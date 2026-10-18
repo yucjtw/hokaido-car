@@ -1,0 +1,42 @@
+:root {
+  --bg: #f4f2ee;
+  --card: #ffffff;
+  --line: #e2ddd5;
+  --text: #1d1b18;
+  --muted: #6f6a62;
+  --accent: #b2471d;
+  --code: #14365c;
+  --note: #6b5a2a;
+  --phone: #1f6b4a;
+  --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'PingFang TC', 'Noto Sans TC',
+    'Noto Sans JP', sans-serif;
+  line-height: 1.45;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141312;
+    --card: #1e1c1a;
+    --line: #34302b;
+    --text: #f1ede6;
+    --muted: #a39d93;
+    --accent: #f08a5d;
+    --code: #9cc8ff;
+    --note: #d9c27a;
+    --phone: #7fd1a8;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+}
