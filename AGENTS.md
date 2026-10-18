@@ -9,5 +9,6 @@
 - All place data lives in `src/data/days.ts`; its shape is in `src/data/types.ts`. Each day has area sections, each section has spots.
 - On load the page opens the tab named in the URL hash, else the tab for the browser's local date, else the next upcoming day, else the first day.
 - The repo is public. Itinerary dates and places are fine to publish, but never commit reservation numbers, booking or payment details, personal names, or private contact information. Phone numbers must be public business numbers.
+- When places are within walking distance, list them under one parking spot's `walk` instead of as separate spots; pick the parking spot that is free when one exists.
 - Never invent a map code. Take it from an official or published source; leave it `null` when not found, and the page shows the phone number in its place (car navigation accepts either).
 - Run `npm run check` and `npm run build` before committing. Pushing to `main` deploys via `.github/workflows/deploy.yml`.

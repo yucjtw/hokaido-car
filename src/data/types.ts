@@ -11,6 +11,13 @@ export interface Spot {
   address?: string
   /** One short line in Traditional Chinese, e.g. what this stop is for. */
   note?: string
+  /** Places reached on foot after parking here, so they need no navigation entry. */
+  walk?: WalkSpot[]
+}
+
+export interface WalkSpot {
+  name: string
+  note?: string
 }
 
 export interface Section {

@@ -30,6 +30,16 @@
       {/if}
     </p>
   {/if}
+  {#if spot.walk?.length}
+    <ul class="walk">
+      {#each spot.walk as place (place.name)}
+        <li>
+          <span class="walk-name" lang="ja">{place.name}</span>
+          {#if place.note}<span class="walk-note">{place.note}</span>{/if}
+        </li>
+      {/each}
+    </ul>
+  {/if}
 </li>
 
 <style>
@@ -89,5 +99,26 @@
   }
   .address {
     color: var(--muted);
+  }
+  .walk {
+    list-style: none;
+    margin: 8px 0 0;
+    padding: 6px 0 0 10px;
+    border-left: 3px solid var(--line);
+  }
+  .walk li {
+    padding: 2px 0;
+    font-size: 0.875rem;
+  }
+  .walk li::before {
+    content: '🚶 ';
+  }
+  .walk-name {
+    font-weight: 600;
+    color: var(--text);
+  }
+  .walk-note {
+    margin-left: 6px;
+    color: var(--note);
   }
 </style>
