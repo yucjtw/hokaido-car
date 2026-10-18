@@ -63,6 +63,7 @@ const toyakoOnsen: Section = {
       mapcodeSource: 'https://www.mapion.co.jp/phonebook/M01002/01584/G5489222-001/',
       phone: '0142-75-1066',
       address: '洞爺湖町洞爺湖温泉59-2',
+      note: '噴火拉麵、味噌拉麵；11:30–14:30、18:00–22:00',
     },
     {
       name: '食堂バル 金田一商店',
@@ -97,6 +98,7 @@ const noboribetsuStation: Section = {
       mapcodeSource: 'WNR マップコード PDF（Mapion 為 603 142 220*21）',
       phone: '0143-83-3800',
       address: '登別市登別東町1-22',
+      note: '水族館',
     },
     {
       name: '登別伊達時代村',
@@ -104,6 +106,7 @@ const noboribetsuStation: Section = {
       mapcodeSource: 'WNR マップコード PDF（Mapion 為 603 169 262*31）',
       phone: '0143-83-3311',
       address: '登別市中登別町53-1',
+      note: '江戶時代主題園區',
     },
   ],
 }
@@ -123,12 +126,14 @@ const noboribetsuOnsen: Section = {
       mapcode: '603 318 006*14',
       mapcodeSource: 'WNR マップコード PDF（Mapion 為 603 318 003*32）',
       address: '登別市登別温泉町',
+      note: '爆裂火口跡，沼底湧出硫磺泉；停車場只開夏季',
     },
     {
       name: '大湯沼川天然足湯',
       mapcode: '603 317 015*71',
       mapcodeSource: 'WNR マップコード PDF',
       address: '登別市登別温泉町',
+      note: '免費，日出到日落；附近停車場付費',
     },
     {
       name: 'PIZZERIA ASTRA',
@@ -142,6 +147,7 @@ const noboribetsuOnsen: Section = {
       mapcode: null,
       phone: '0143-84-2017',
       address: '登別市登別温泉町49',
+      note: '山葵加工品、わさび漬伴手禮；9:00–22:00',
     },
     {
       name: '倶多楽湖 扇形展望台',
@@ -184,6 +190,7 @@ export const days: Day[] = [
             mapcodeSource: 'https://www.mapion.co.jp/phonebook/M06007/01202/ILSP0000661558_ipclm/',
             phone: '0138-57-2839',
             address: '函館市上湯川町346',
+            note: '日本第一座女子修道院；8:30–16:30',
           },
           {
             name: '函館市民の森 駐車場',
@@ -197,11 +204,13 @@ export const days: Day[] = [
             name: '函館市熱帯植物園',
             mapcode: '86 080 515*58',
             mapcodeSource: 'WNR マップコード PDF',
+            note: '溫泉猴',
           },
           {
             name: '湯の川温泉足湯 湯巡り舞台',
             mapcode: '86 109 231*52',
             mapcodeSource: 'WNR マップコード PDF',
+            note: '免費，9:00–21:00；水溫偏燙，帶小毛巾',
           },
         ],
       },
@@ -215,6 +224,7 @@ export const days: Day[] = [
             mapcodeSource: 'https://www.mapion.co.jp/phonebook/M02030/01202/ILSP0057256484_ipclm/',
             phone: '0138-47-2600',
             address: '函館市石川町85-1',
+            note: '雨天備案；9:00–22:00，免費停車',
           },
           {
             name: '北海道東照宮',
@@ -222,12 +232,14 @@ export const days: Day[] = [
             mapcodeSource: 'https://www.mapion.co.jp/phonebook/M06005/01202/20130138266/',
             phone: '0138-32-2221',
             address: '函館市陣川町82-153',
+            note: '北海道唯一的東照宮；コナン聖地',
           },
           {
             name: 'GRANDIR ICHII',
             mapcode: '86 226 281*61',
             mapcodeSource: 'https://www.mapion.co.jp/phonebook/M02021/01202/ILSP0085682636_ipclm/ （館內ココカラファイン）',
             address: '函館市美原1-3-1',
+            note: 'トライアル、サイゼリヤ；BF 9:00–22:00、1F・2F 10:00–20:00',
           },
         ],
       },
@@ -240,11 +252,13 @@ export const days: Day[] = [
             mapcodeSource: 'https://www.mapion.co.jp/phonebook/M10018/01236/20130330954/',
             phone: '0138-75-2108',
             address: '北斗市三ツ石392',
+            note: '林蔭道、奶油霜淇淋；賣店 8:30–16:30；女性不能進修道院內',
           },
           {
             name: '新函館北斗駅',
             mapcode: '86 543 132*36',
             mapcodeSource: 'WNR マップコード PDF',
+            note: '北海道新幹線車站',
           },
         ],
       },
@@ -257,6 +271,7 @@ export const days: Day[] = [
             mapcodeSource: 'https://www.mapion.co.jp/phonebook/M08003/01337/ILSP0060729305_ipclm/',
             phone: '0138-86-5195',
             address: '七飯町峠下380-2',
+            note: 'ガラナソフト、山川牛コロッケ；9:00–18:00',
           },
           {
             name: '久保田牧場チーズ研究所 ミルクパーラー',
@@ -264,6 +279,7 @@ export const days: Day[] = [
             mapcodeSource: 'https://www.mapion.co.jp/phonebook/M01029/01337/20130332055/',
             phone: '0138-67-2560',
             address: '七飯町軍川527-2',
+            note: '義式冰淇淋、自製起司；10:00–16:00',
           },
           {
             name: '山川牧場ミルクプラント',
@@ -277,6 +293,7 @@ export const days: Day[] = [
             name: '大沼国定公園',
             mapcode: '86 816 665*28',
             mapcodeSource: 'WNR マップコード PDF（Mapion 的公園點位是 86 815 836*45，兩者不同）',
+            note: '湖畔散步',
           },
           {
             name: '大沼国際交流プラザ',
@@ -298,6 +315,7 @@ export const days: Day[] = [
             mapcodeSource: 'https://www.mapion.co.jp/phonebook/M08003/01343/ILSP0058717779_ipclm/',
             phone: '01372-7-5655',
             address: '鹿部町鹿部18-1',
+            note: '間歇泉、足湯、蒸し釜；食堂 11:00–14:00',
           },
         ],
       },
@@ -328,6 +346,7 @@ export const days: Day[] = [
             mapcodeSource: 'WNR マップコード PDF（Mapion 為 321 433 351*52）',
             phone: '0142-75-2401',
             address: '壮瞥町昭和新山184-5',
+            note: '山頂可看昭和新山與洞爺湖',
           },
         ],
       },
@@ -340,6 +359,7 @@ export const days: Day[] = [
             mapcodeSource: 'WNR マップコード PDF（Mapion 為 321 726 761*58／321 726 730*43）',
             phone: '0142-87-2221',
             address: '洞爺湖町成香3-5',
+            note: '俯瞰湖面與中島；賣店 8:30–18:00',
           },
           {
             name: 'レークヒル・ファーム',
@@ -347,6 +367,7 @@ export const days: Day[] = [
             mapcodeSource: 'WNR マップコード PDF（Mapion 為 321 694 504*32）',
             phone: '0142-83-3376',
             address: '洞爺湖町花和127',
+            note: '自家牛乳 gelato；10 月 9:00–17:00',
           },
           {
             name: '道の駅 とうや湖',
@@ -354,6 +375,7 @@ export const days: Day[] = [
             mapcodeSource: 'https://www.hkd.mlit.go.jp/mr/category/drivemap.pdf （PDF 的 321 878 269*30 與 Mapion、國交省都不符）',
             phone: '0142-87-2200',
             address: '洞爺湖町香川9-4',
+            note: '10 月 9:00–18:00',
           },
           {
             name: 'とうや水の駅',
@@ -361,12 +383,14 @@ export const days: Day[] = [
             mapcodeSource: 'WNR マップコード PDF（未找到其他來源可核對）',
             phone: '0142-89-3108',
             address: '洞爺湖町洞爺町100',
+            note: '10 月 9:00–17:00',
           },
           {
             name: '浮見堂',
             mapcode: '321 789 318*11',
             mapcodeSource: 'WNR マップコード PDF（Mapion 浮見堂公園トイレ為 321 789 308*11）',
             address: '洞爺湖町洞爺町',
+            note: '湖畔小堂，車停湖邊',
           },
         ],
       },
@@ -402,6 +426,7 @@ export const days: Day[] = [
             mapcode: '385 393 656*85',
             mapcodeSource: 'WNR マップコード PDF',
             address: '真狩村社215',
+            note: '可取羊蹄山湧水',
           },
           {
             name: '湧水の里 真狩豆腐工房',
@@ -409,12 +434,14 @@ export const days: Day[] = [
             mapcodeSource: 'WNR マップコード PDF',
             phone: '0136-48-2636',
             address: '真狩村社217-1',
+            note: '用湧水做的豆腐；營業時間各來源不一',
           },
           {
             name: '羊蹄山自然公園',
             mapcode: '385 424 369*74',
             mapcodeSource: 'WNR マップコード PDF（Mapion 為 385 424 680*60）',
             address: '真狩村',
+            note: '羊蹄山麓公園',
           },
           {
             name: 'ルスツリゾート',
@@ -422,6 +449,7 @@ export const days: Day[] = [
             mapcodeSource: 'WNR マップコード PDF（Mapion 遊園地為 385 288 335*06）',
             phone: '0136-46-3331',
             address: '留寿都村泉川13',
+            note: '遊樂園度假村；10 月下旬營業與否待確認',
           },
         ],
       },
@@ -450,12 +478,14 @@ export const days: Day[] = [
             mapcode: '708 814 577*03',
             mapcodeSource: 'WNR マップコード PDF（Mapion 水壩點位為 708 814 769*74）',
             address: '札幌市南区定山渓',
+            note: '水壩下游公園',
           },
           {
             name: '定山渓温泉 日帰り専用駐車場',
             mapcode: '708 754 327*44',
             mapcodeSource: 'WNR マップコード PDF',
             address: '札幌市南区定山渓温泉',
+            note: '逛溫泉街用',
           },
         ],
       },
@@ -528,6 +558,7 @@ export const days: Day[] = [
             mapcodeSource: 'https://www.mapion.co.jp/phonebook/M04101/01578/0000SOGI_001pa/',
             phone: '0144-82-5093',
             address: '白老町社台271-44',
+            note: '白老牛牛排、燒肉',
           },
           {
             name: 'ミナピエノ',
@@ -555,6 +586,7 @@ export const days: Day[] = [
             mapcodeSource: 'https://www.mapion.co.jp/phonebook/M02013/01578/20130858437/',
             phone: '0144-87-4975',
             address: '白老町竹浦118-31',
+            note: '陶器展示與販售',
           },
           {
             name: 'かに王',
@@ -562,6 +594,7 @@ export const days: Day[] = [
             mapcodeSource: 'https://www.mapion.co.jp/phonebook/M01018/01578/GJ003958204-001/',
             phone: '0144-87-4575',
             address: '白老町竹浦113-13',
+            note: '螃蟹店；電話待確認',
           },
           {
             name: '三吉丸 かに直売店',
