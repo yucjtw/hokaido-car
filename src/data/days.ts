@@ -248,13 +248,6 @@ export const days: Day[] = [
             phone: '0142-75-2401',
             address: '壮瞥町昭和新山184-5',
           },
-          {
-            name: '昭和新山熊牧場',
-            mapcode: '321 433 323*36',
-            mapcodeSource: 'WNR マップコード PDF（Mapion 為 321 433 323*01）',
-            phone: '0142-75-2290',
-            address: '壮瞥町昭和新山183',
-          },
         ],
       },
       {
@@ -421,14 +414,6 @@ export const days: Day[] = [
             address: '登別市登別温泉町',
           },
           {
-            name: 'のぼりべつクマ牧場',
-            mapcode: '603 257 773*00',
-            mapcodeSource: 'WNR マップコード PDF（Mapion 為 603 259 465*43）',
-            phone: '0143-84-2225',
-            address: '登別市登別温泉町224',
-            note: '纜車山麓站',
-          },
-          {
             name: 'のぼりべつインフォメーションセンター',
             mapcode: '603 112 842*03',
             mapcodeSource: 'WNR マップコード PDF（Mapion 為 603 112 842*72）',
@@ -535,9 +520,12 @@ export const days: Day[] = [
             note: '預訂取貨 9:30–11:30、14:00–15:30',
           },
           {
-            name: 'ゆジェラート',
-            mapcode: null,
-            note: '花の湯裏；地點待查',
+            name: '花の湯温泉',
+            mapcode: '603 176 384*08',
+            mapcodeSource: 'https://www.mapion.co.jp/phonebook/M09028/01578/20130391119/',
+            phone: '0144-87-4035',
+            address: '白老町虎杖浜40-2',
+            note: 'ゆジェラート在溫泉腹地內',
           },
         ],
       },
@@ -596,13 +584,6 @@ export const days: Day[] = [
             mapcode: '603 317 015*71',
             mapcodeSource: 'WNR マップコード PDF',
             address: '登別市登別温泉町',
-          },
-          {
-            name: 'のぼりべつクマ牧場',
-            mapcode: '603 257 773*00',
-            mapcodeSource: 'WNR マップコード PDF（Mapion 為 603 259 465*43）',
-            phone: '0143-84-2225',
-            address: '登別市登別温泉町224',
           },
           {
             name: 'PIZZERIA ASTRA',
