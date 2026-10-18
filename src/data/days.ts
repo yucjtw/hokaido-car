@@ -92,6 +92,51 @@ const noboribetsuOnsen: Section = {
 }
 
 
+const toyakoWestNorth: Section = {
+  title: '湖西・湖北',
+  spots: [
+    {
+      name: 'サイロ展望台',
+      mapcode: '321 726 732*60',
+      mapcodeSource: 'WNR マップコード PDF（Mapion 為 321 726 761*58／321 726 730*43）',
+      phone: '0142-87-2221',
+      address: '洞爺湖町成香3-5',
+      note: '俯瞰湖面與中島；賣店 8:30–18:00',
+    },
+    {
+      name: 'レークヒル・ファーム',
+      mapcode: '321 694 534*66',
+      mapcodeSource: 'WNR マップコード PDF（Mapion 為 321 694 504*32）',
+      phone: '0142-83-3376',
+      address: '洞爺湖町花和127',
+      note: '自家牛乳 gelato；10 月 9:00–17:00',
+    },
+    {
+      name: '道の駅 とうや湖',
+      mapcode: '321 879 391*06',
+      mapcodeSource: 'https://www.hkd.mlit.go.jp/mr/category/drivemap.pdf （PDF 的 321 878 269*30 與 Mapion、國交省都不符）',
+      phone: '0142-87-2200',
+      address: '洞爺湖町香川9-4',
+      note: '10 月 9:00–18:00',
+    },
+    {
+      name: 'とうや水の駅',
+      mapcode: '321 820 281*88',
+      mapcodeSource: 'WNR マップコード PDF（未找到其他來源可核對）',
+      phone: '0142-89-3108',
+      address: '洞爺湖町洞爺町100',
+      note: '10 月 9:00–17:00',
+    },
+    {
+      name: '浮見堂',
+      mapcode: '321 789 318*11',
+      mapcodeSource: 'WNR マップコード PDF（Mapion 浮見堂公園トイレ為 321 789 308*11）',
+      address: '洞爺湖町洞爺町',
+      note: '湖畔小堂，車停湖邊',
+    },
+  ],
+}
+
 export const days: Day[] = [
   {
     date: '2026-10-25',
@@ -270,50 +315,7 @@ export const days: Day[] = [
           },
         ],
       },
-      {
-        title: '湖西・湖北',
-        spots: [
-          {
-            name: 'サイロ展望台',
-            mapcode: '321 726 732*60',
-            mapcodeSource: 'WNR マップコード PDF（Mapion 為 321 726 761*58／321 726 730*43）',
-            phone: '0142-87-2221',
-            address: '洞爺湖町成香3-5',
-            note: '俯瞰湖面與中島；賣店 8:30–18:00',
-          },
-          {
-            name: 'レークヒル・ファーム',
-            mapcode: '321 694 534*66',
-            mapcodeSource: 'WNR マップコード PDF（Mapion 為 321 694 504*32）',
-            phone: '0142-83-3376',
-            address: '洞爺湖町花和127',
-            note: '自家牛乳 gelato；10 月 9:00–17:00',
-          },
-          {
-            name: '道の駅 とうや湖',
-            mapcode: '321 879 391*06',
-            mapcodeSource: 'https://www.hkd.mlit.go.jp/mr/category/drivemap.pdf （PDF 的 321 878 269*30 與 Mapion、國交省都不符）',
-            phone: '0142-87-2200',
-            address: '洞爺湖町香川9-4',
-            note: '10 月 9:00–18:00',
-          },
-          {
-            name: 'とうや水の駅',
-            mapcode: '321 820 281*88',
-            mapcodeSource: 'WNR マップコード PDF（未找到其他來源可核對）',
-            phone: '0142-89-3108',
-            address: '洞爺湖町洞爺町100',
-            note: '10 月 9:00–17:00',
-          },
-          {
-            name: '浮見堂',
-            mapcode: '321 789 318*11',
-            mapcodeSource: 'WNR マップコード PDF（Mapion 浮見堂公園トイレ為 321 789 308*11）',
-            address: '洞爺湖町洞爺町',
-            note: '湖畔小堂，車停湖邊',
-          },
-        ],
-      },
+      toyakoWestNorth,
     ],
   },
   {
@@ -322,6 +324,7 @@ export const days: Day[] = [
     weekday: '二',
     route: '洞爺湖 → 札幌',
     sections: [
+      { ...toyakoWestNorth, note: '往札幌順路' },
       {
         title: '京極・真狩・留寿都',
         note: '走國道 230 號中山峠才順路',
