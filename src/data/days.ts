@@ -1,4 +1,158 @@
-import type { Day } from './types'
+import type { Day, Section } from './types'
+
+// Areas visited on more than one day share one section, so they read the same on every tab.
+const toyakoOnsen: Section = {
+  title: '洞爺湖温泉',
+  spots: [
+    {
+      name: '洞爺湖畔亭',
+      mapcode: '321 519 556*68',
+      mapcodeSource: 'https://www.toya-kohantei.com/access/',
+      phone: '0570-026-571',
+      address: '洞爺湖町洞爺湖温泉7-8',
+      note: '住ごきらく亭：先把車開到畔亭玄關',
+    },
+    {
+      name: 'apollostation 洞爺温泉SS',
+      mapcode: '321 519 455*35',
+      mapcodeSource: 'https://www.mapion.co.jp/phonebook/M08004/01584/ILSP0000308432_ipclm/',
+      phone: '0142-75-2021',
+      address: '洞爺湖町洞爺湖温泉53',
+      note: '加油',
+    },
+    {
+      name: '洞爺湖汽船',
+      mapcode: '321 518 618*63',
+      mapcodeSource: 'WNR マップコード PDF（Mapion 遊覧船乗り場為 321 519 605*12）',
+      phone: '0142-75-2137',
+      address: '洞爺湖町洞爺湖温泉29',
+      note: '中島航線 8:30–16:30，每 30 分一班',
+    },
+    {
+      name: '洞爺湖 湖底線路',
+      mapcode: null,
+      note: '溫泉街西側湖畔，步行前往',
+    },
+    {
+      name: '洞爺湖文化センター',
+      mapcode: '321 518 345*51',
+      mapcodeSource: 'https://www.mapion.co.jp/phonebook/M04101/01584/0000TYAB_001pa/',
+      phone: '0142-75-4400',
+      address: '洞爺湖町洞爺湖温泉142-130',
+      note: '金比羅火口災害遺構散策路：停旁邊的免費停車場',
+    },
+    {
+      name: '洞爺湖ビジターセンター・火山科学館',
+      mapcode: '321 518 337*76',
+      mapcodeSource: 'https://www.mapion.co.jp/phonebook/M04004/01584/ILSP0000084959_ipclm/',
+      phone: '0142-75-2555',
+      address: '洞爺湖町洞爺湖温泉142-5',
+      note: '週一休館',
+    },
+    {
+      name: '洞爺湖越後屋',
+      mapcode: '321 519 460*12',
+      mapcodeSource: 'https://www.mapion.co.jp/phonebook/M26017/01584/20130389279/',
+      phone: '0142-75-2158',
+      address: '洞爺湖町洞爺湖温泉71',
+      note: '洞爺湖木刀',
+    },
+    {
+      name: 'ラーメン専門店 豊来軒',
+      mapcode: '321 519 426*48',
+      mapcodeSource: 'https://www.mapion.co.jp/phonebook/M01002/01584/G5489222-001/',
+      phone: '0142-75-1066',
+      address: '洞爺湖町洞爺湖温泉59-2',
+    },
+    {
+      name: '食堂バル 金田一商店',
+      mapcode: null,
+      address: '洞爺湖町洞爺湖温泉1-22',
+      note: '溫泉街內，步行前往',
+    },
+  ],
+}
+
+const noboribetsuStation: Section = {
+  title: '登別駅・登別東町',
+  spots: [
+    {
+      name: '登別市観光交流センター ヌプル',
+      mapcode: '603 112 842*03',
+      mapcodeSource: 'WNR マップコード PDF（のぼりべつインフォメーションセンター；Mapion 為 603 112 842*72）',
+      address: '登別市登別港町1-4-9',
+      note: 'なな色のヒカリ；登別駅旁',
+    },
+    {
+      name: '肴 雲丹 まるひら',
+      mapcode: '603 141 104*35',
+      mapcodeSource: 'https://www.mapion.co.jp/phonebook/M01018/01230/GJ003958021-001/',
+      phone: '0143-84-4577',
+      address: '登別市登別東町4-15-2',
+      note: '週一休',
+    },
+    {
+      name: '登別マリンパークニクス',
+      mapcode: '603 142 219*44',
+      mapcodeSource: 'WNR マップコード PDF（Mapion 為 603 142 220*21）',
+      phone: '0143-83-3800',
+      address: '登別市登別東町1-22',
+    },
+    {
+      name: '登別伊達時代村',
+      mapcode: '603 169 288*33',
+      mapcodeSource: 'WNR マップコード PDF（Mapion 為 603 169 262*31）',
+      phone: '0143-83-3311',
+      address: '登別市中登別町53-1',
+    },
+  ],
+}
+
+const noboribetsuOnsen: Section = {
+  title: '登別温泉',
+  spots: [
+    {
+      name: '登別地獄谷',
+      mapcode: '603 287 235*11',
+      mapcodeSource: 'WNR マップコード PDF（Mapion 為 603 288 397*03）',
+      address: '登別市登別温泉町',
+      note: '停車場每日 500 日圓',
+    },
+    {
+      name: '大湯沼',
+      mapcode: '603 318 006*14',
+      mapcodeSource: 'WNR マップコード PDF（Mapion 為 603 318 003*32）',
+      address: '登別市登別温泉町',
+    },
+    {
+      name: '大湯沼川天然足湯',
+      mapcode: '603 317 015*71',
+      mapcodeSource: 'WNR マップコード PDF',
+      address: '登別市登別温泉町',
+    },
+    {
+      name: 'PIZZERIA ASTRA',
+      mapcode: null,
+      phone: '070-5605-7702',
+      address: '登別市登別温泉町60',
+      note: '週二、三休；停さぎり湯停車場',
+    },
+    {
+      name: '藤崎わさび園',
+      mapcode: null,
+      phone: '0143-84-2017',
+      address: '登別市登別温泉町49',
+    },
+    {
+      name: '倶多楽湖 扇形展望台',
+      mapcode: '603 320 752*58',
+      mapcodeSource: 'WNR マップコード PDF',
+      address: '白老町虎杖浜498-1',
+      note: '11 月起封路',
+    },
+  ],
+}
+
 
 export const days: Day[] = [
   {
@@ -147,47 +301,7 @@ export const days: Day[] = [
           },
         ],
       },
-      {
-        title: '洞爺湖温泉',
-        spots: [
-          {
-            name: '洞爺湖畔亭',
-            mapcode: '321 519 556*68',
-            mapcodeSource: 'https://www.toya-kohantei.com/access/',
-            phone: '0570-026-571',
-            address: '洞爺湖町洞爺湖温泉7-8',
-            note: '住ごきらく亭：先把車開到畔亭玄關',
-          },
-          {
-            name: '洞爺湖越後屋',
-            mapcode: '321 519 460*12',
-            mapcodeSource: 'https://www.mapion.co.jp/phonebook/M26017/01584/20130389279/',
-            phone: '0142-75-2158',
-            address: '洞爺湖町洞爺湖温泉71',
-            note: '洞爺湖木刀',
-          },
-          {
-            name: '洞爺湖ビジターセンター・火山科学館',
-            mapcode: '321 518 337*76',
-            mapcodeSource: 'https://www.mapion.co.jp/phonebook/M04004/01584/ILSP0000084959_ipclm/',
-            phone: '0142-75-2555',
-            address: '洞爺湖町洞爺湖温泉142-5',
-          },
-          {
-            name: 'ラーメン専門店 豊来軒',
-            mapcode: '321 519 426*48',
-            mapcodeSource: 'https://www.mapion.co.jp/phonebook/M01002/01584/G5489222-001/',
-            phone: '0142-75-1066',
-            address: '洞爺湖町洞爺湖温泉59-2',
-          },
-          {
-            name: '食堂バル 金田一商店',
-            mapcode: null,
-            address: '洞爺湖町洞爺湖温泉1-22',
-            note: '溫泉街內，步行前往',
-          },
-        ],
-      },
+      toyakoOnsen,
     ],
   },
   {
@@ -196,40 +310,7 @@ export const days: Day[] = [
     weekday: '一',
     route: '洞爺湖周邊',
     sections: [
-      {
-        title: '洞爺湖温泉',
-        spots: [
-          {
-            name: '洞爺湖汽船',
-            mapcode: '321 518 618*63',
-            mapcodeSource: 'WNR マップコード PDF（Mapion 遊覧船乗り場為 321 519 605*12）',
-            phone: '0142-75-2137',
-            address: '洞爺湖町洞爺湖温泉29',
-            note: '中島航線 8:30–16:30，每 30 分一班',
-          },
-          {
-            name: '洞爺湖 湖底線路',
-            mapcode: null,
-            note: '溫泉街西側湖畔，步行前往',
-          },
-          {
-            name: '洞爺湖文化センター',
-            mapcode: '321 518 345*51',
-            mapcodeSource: 'https://www.mapion.co.jp/phonebook/M04101/01584/0000TYAB_001pa/',
-            phone: '0142-75-4400',
-            address: '洞爺湖町洞爺湖温泉142-130',
-            note: '金比羅火口災害遺構散策路：停旁邊的免費停車場',
-          },
-          {
-            name: 'apollostation 洞爺温泉SS',
-            mapcode: '321 519 455*35',
-            mapcodeSource: 'https://www.mapion.co.jp/phonebook/M08004/01584/ILSP0000308432_ipclm/',
-            phone: '0142-75-2021',
-            address: '洞爺湖町洞爺湖温泉53',
-            note: '加油',
-          },
-        ],
-      },
+      toyakoOnsen,
       {
         title: '西山・有珠山・昭和新山',
         spots: [
@@ -391,37 +472,8 @@ export const days: Day[] = [
           },
         ],
       },
-      {
-        title: '登別',
-        note: '備用',
-        spots: [
-          {
-            name: '登別地獄谷',
-            mapcode: '603 287 235*11',
-            mapcodeSource: 'WNR マップコード PDF（Mapion 為 603 288 397*03）',
-            address: '登別市登別温泉町',
-          },
-          {
-            name: '大湯沼',
-            mapcode: '603 318 006*14',
-            mapcodeSource: 'WNR マップコード PDF（Mapion 為 603 318 003*32）',
-            address: '登別市登別温泉町',
-          },
-          {
-            name: '大湯沼川天然足湯',
-            mapcode: '603 317 015*71',
-            mapcodeSource: 'WNR マップコード PDF',
-            address: '登別市登別温泉町',
-          },
-          {
-            name: 'のぼりべつインフォメーションセンター',
-            mapcode: '603 112 842*03',
-            mapcodeSource: 'WNR マップコード PDF（Mapion 為 603 112 842*72）',
-            address: '登別市登別港町1-4-1',
-            note: '登別駅旁',
-          },
-        ],
-      },
+      { ...noboribetsuStation, note: '備用' },
+      { ...noboribetsuOnsen, note: '備用' },
     ],
   },
   {
@@ -529,84 +581,8 @@ export const days: Day[] = [
           },
         ],
       },
-      {
-        title: '登別駅・登別東町',
-        spots: [
-          {
-            name: '登別市観光交流センター ヌプル',
-            mapcode: '603 112 842*03',
-            mapcodeSource: 'WNR マップコード PDF（のぼりべつインフォメーションセンター；Mapion 為 603 112 842*72）',
-            address: '登別市登別港町1-4-9',
-            note: 'なな色のヒカリ；登別駅旁',
-          },
-          {
-            name: '肴 雲丹 まるひら',
-            mapcode: '603 141 104*35',
-            mapcodeSource: 'https://www.mapion.co.jp/phonebook/M01018/01230/GJ003958021-001/',
-            phone: '0143-84-4577',
-            address: '登別市登別東町4-15-2',
-            note: '週一休',
-          },
-          {
-            name: '登別マリンパークニクス',
-            mapcode: '603 142 219*44',
-            mapcodeSource: 'WNR マップコード PDF（Mapion 為 603 142 220*21）',
-            phone: '0143-83-3800',
-            address: '登別市登別東町1-22',
-          },
-          {
-            name: '登別伊達時代村',
-            mapcode: '603 169 288*33',
-            mapcodeSource: 'WNR マップコード PDF（Mapion 為 603 169 262*31）',
-            phone: '0143-83-3311',
-            address: '登別市中登別町53-1',
-          },
-        ],
-      },
-      {
-        title: '登別温泉',
-        spots: [
-          {
-            name: '登別地獄谷',
-            mapcode: '603 287 235*11',
-            mapcodeSource: 'WNR マップコード PDF（Mapion 為 603 288 397*03）',
-            address: '登別市登別温泉町',
-            note: '停車場每日 500 日圓',
-          },
-          {
-            name: '大湯沼',
-            mapcode: '603 318 006*14',
-            mapcodeSource: 'WNR マップコード PDF（Mapion 為 603 318 003*32）',
-            address: '登別市登別温泉町',
-          },
-          {
-            name: '大湯沼川天然足湯',
-            mapcode: '603 317 015*71',
-            mapcodeSource: 'WNR マップコード PDF',
-            address: '登別市登別温泉町',
-          },
-          {
-            name: 'PIZZERIA ASTRA',
-            mapcode: null,
-            phone: '070-5605-7702',
-            address: '登別市登別温泉町60',
-            note: '週二、三休；停さぎり湯停車場',
-          },
-          {
-            name: '藤崎わさび園',
-            mapcode: null,
-            phone: '0143-84-2017',
-            address: '登別市登別温泉町49',
-          },
-          {
-            name: '倶多楽湖 扇形展望台',
-            mapcode: '603 320 752*58',
-            mapcodeSource: 'WNR マップコード PDF',
-            address: '白老町虎杖浜498-1',
-            note: '11 月起封路',
-          },
-        ],
-      },
+      noboribetsuStation,
+      noboribetsuOnsen,
     ],
   },
 ]
