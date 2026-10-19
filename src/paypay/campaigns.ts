@@ -122,7 +122,7 @@ export const campaigns: Record<string, Campaign> = {
     budget: '全季總預算 170 萬點；每月點數合併後四捨五入',
     link: PX_MAIN,
     fullNotice: PX_NOTICE,
-    noticeKeywords: '主活動、3.5%；預算整季共用，額滿就到 12/31 都沒有',
+    noticeKeywords: '玩日本、主活動、3.5%；預算整季共用，額滿就到 12/31 都沒有',
   },
   px_reg4: {
     id: 'px_reg4',
@@ -140,7 +140,7 @@ export const campaigns: Record<string, Campaign> = {
     budget: '登錄人數不限，但回饋每月總量 160,000 點，大家共用、送完就沒有',
     link: PX_MAIN,
     fullNotice: PX_NOTICE,
-    noticeKeywords: '加碼活動、需登錄、滿 3,000、4%；每月一期',
+    noticeKeywords: '玩日本、加碼活動、需登錄、滿 3,000、4%；每月一期',
   },
   px_cathay_account: {
     id: 'px_cathay_account',
@@ -159,7 +159,7 @@ export const campaigns: Record<string, Campaign> = {
     budget: '每週總預算 80,000 點，約 800 人拿滿',
     link: PX_ACCOUNT,
     fullNotice: PX_NOTICE,
-    noticeKeywords: '國泰世華、銀行帳戶、5%；每週一期',
+    noticeKeywords: '日本跨境、國泰世華、銀行帳戶、5%；每週一期',
   },
   px_cathay_card: {
     id: 'px_cathay_card',
@@ -176,7 +176,7 @@ export const campaigns: Record<string, Campaign> = {
     budget: '每週總預算 45,000 點，約 450 人拿滿',
     link: PX_CARD,
     fullNotice: PX_NOTICE,
-    noticeKeywords: '國泰世華、信用卡、滿千；每週一期',
+    noticeKeywords: '日韓跨境、國泰世華、信用卡、滿千；每週一期',
   },
   px_next_account: {
     id: 'px_next_account',
@@ -194,7 +194,7 @@ export const campaigns: Record<string, Campaign> = {
     budget: '每週總預算 20,000 點，約 200 人拿滿',
     link: PX_ACCOUNT,
     fullNotice: PX_NOTICE,
-    noticeKeywords: '將來銀行、5%；每週一期',
+    noticeKeywords: '日本跨境、將來銀行、5%；每週一期',
   },
   px_fee: feeWaiver('px_fee', '2026-10-01', '2026-12-31', PX_MAIN),
   qy_cathay_account: {
