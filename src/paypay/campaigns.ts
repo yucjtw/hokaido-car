@@ -1,0 +1,397 @@
+// PayPay cashback campaigns for Taiwanese wallets during the trip.
+// Base list: hokaido repo web-data/paypay_2026-10-21_to_11-02.md.
+// Dates, budgets, fee waivers and rounding re-checked on the official pages on 2026-10-19.
+// Caps and minimums are in NT$; 全點 and 台新 Point are both worth NT$1 each.
+
+export const TRIP_START = '2026-10-21'
+export const TRIP_END = '2026-11-02'
+export const CHECKED_ON = '2026-10-19'
+
+export type PeriodKind = 'month' | 'week' | 'wave' | 'quarter' | 'all'
+
+export interface Settings {
+  /** NT$ per JPY 1. */
+  rate: number
+  /** Taishin 3.8% needs auto-debit from a Taishin account; otherwise 1.3%. */
+  taishinAutoDebit: boolean
+  /** Keys `${campaignId}:${month}` registered before paying, for campaigns that need it. */
+  registered: Record<string, boolean>
+  /** Keys `${campaignId}:${periodKey}` whose total budget has run out. */
+  full: Record<string, boolean>
+}
+
+export const defaultSettings: Settings = {
+  rate: 0.21,
+  taishinAutoDebit: true,
+  registered: {},
+  full: {},
+}
+
+export interface Campaign {
+  id: string
+  name: string
+  rate: number | ((s: Settings) => number)
+  unit: '點' | 'NT$' | '台新 Point'
+  /** First and last payment date, Taiwan time. */
+  start: string
+  end: string
+  /** Max reward for one payment. */
+  perTxn?: number
+  /** Payment must be at least this many NT$. */
+  minTxn?: number
+  /** Personal reward cap per `capPeriod`. */
+  cap?: number
+  capPeriod?: PeriodKind
+  /** The period whose total budget can run out; null when there is no budget limit. */
+  fullPeriod: PeriodKind | null
+  /** How the wallet rounds each payment's reward, when its terms say. */
+  rounding?: 'round' | 'floor'
+  /** Must be registered for each calendar month before paying. */
+  registerMonthly?: boolean
+  /** Fee waiver, not a reward: shown apart and never runs out. */
+  fee?: boolean
+  budget: string
+  link?: string
+}
+
+const PX_MAIN = 'https://marketing.pxpayplus.com/pxplus_marketing_page/activity_content_page?EventId=135'
+const PX_ACCOUNT = 'https://marketing.pxpayplus.com/pxplus_marketing_page/activity_content_page?EventId=124'
+const PX_CARD = 'https://marketing.pxpayplus.com/pxplus_marketing_page/activity_content_page?EventId=131'
+const QY = 'https://www.cathay-cube.com.tw/cathaybk/personal/event/overview/Deposit/All/2026/payplus_paypay_202610'
+const TAISHIN = 'https://mkp.taishinbank.com.tw/TsCms/marketing/expose/WM_20260128095425540/index.html'
+const ESUN = 'https://www.esunbank.com/zh-tw/personal/credit-card/intro/bank-card/kumamon_card'
+
+function feeWaiver(id: string, start: string, end: string, link: string): Campaign {
+  return {
+    id,
+    name: '免 1.5% 國外交易服務費',
+    rate: 1.5,
+    unit: 'NT$',
+    start,
+    end,
+    fullPeriod: null,
+    fee: true,
+    budget: '官方公告免收，不另發回饋',
+    link,
+  }
+}
+
+export const campaigns: Record<string, Campaign> = {
+  px_main: {
+    id: 'px_main',
+    name: '全支付主活動 3.5%',
+    rate: 3.5,
+    unit: '點',
+    start: '2026-10-01',
+    end: '2026-12-31',
+    perTxn: 35,
+    cap: 140,
+    capPeriod: 'month',
+    fullPeriod: 'quarter',
+    budget: '全季總預算 170 萬點；每月點數合併後四捨五入',
+    link: PX_MAIN,
+  },
+  px_reg4: {
+    id: 'px_reg4',
+    name: '全支付滿額加碼 4%（每月登錄）',
+    rate: 4,
+    unit: '點',
+    start: '2026-10-01',
+    end: '2026-12-31',
+    minTxn: 3000,
+    cap: 120,
+    capPeriod: 'all',
+    fullPeriod: 'month',
+    registerMonthly: true,
+    budget: '每月月初開放登錄、不限名額；每月總預算 160,000 點',
+    link: PX_MAIN,
+  },
+  px_cathay_account: {
+    id: 'px_cathay_account',
+    name: '國泰世華帳戶加碼 5%',
+    rate: 5,
+    unit: '點',
+    start: '2026-09-28',
+    end: '2027-01-03',
+    perTxn: 100,
+    cap: 100,
+    capPeriod: 'week',
+    fullPeriod: 'week',
+    rounding: 'round',
+    budget: '每週總預算 80,000 點，約 800 人拿滿',
+    link: PX_ACCOUNT,
+  },
+  px_cathay_card: {
+    id: 'px_cathay_card',
+    name: '國泰世華卡加碼 5%',
+    rate: 5,
+    unit: '點',
+    start: '2026-09-28',
+    end: '2027-01-03',
+    minTxn: 1000,
+    cap: 100,
+    capPeriod: 'wave',
+    fullPeriod: 'week',
+    budget: '每週總預算 45,000 點，約 450 人拿滿',
+    link: PX_CARD,
+  },
+  px_next_account: {
+    id: 'px_next_account',
+    name: '將來銀行帳戶加碼 5%',
+    rate: 5,
+    unit: '點',
+    start: '2026-09-28',
+    end: '2027-01-03',
+    perTxn: 100,
+    cap: 100,
+    capPeriod: 'week',
+    fullPeriod: 'week',
+    rounding: 'round',
+    budget: '每週總預算 20,000 點，約 200 人拿滿',
+    link: PX_ACCOUNT,
+  },
+  px_fee: feeWaiver('px_fee', '2026-10-01', '2026-12-31', PX_MAIN),
+  qy_cathay_account: {
+    id: 'qy_cathay_account',
+    name: '全盈+PAY 國泰帳戶 15%',
+    rate: 15,
+    unit: 'NT$',
+    start: '2026-10-01',
+    end: '2026-12-31',
+    cap: 200,
+    capPeriod: 'month',
+    fullPeriod: 'month',
+    budget: '每月總預算 NT$100,000，約 500 人拿滿；2027/2/28 前統一發放',
+    link: QY,
+  },
+  qy_fee: feeWaiver('qy_fee', '2026-10-01', '2026-12-31', QY),
+  taishin_pay: {
+    id: 'taishin_pay',
+    name: '台新「Pay著刷」',
+    rate: (s) => (s.taishinAutoDebit ? 3.8 : 1.3),
+    unit: '台新 Point',
+    start: '2026-07-01',
+    end: '2027-03-31',
+    fullPeriod: null,
+    budget: '無固定點數上限；設定自動扣繳後，次期帳單結帳後才有 3.8%',
+    link: TAISHIN,
+  },
+  taishin_fee: feeWaiver('taishin_fee', '2026-07-01', '2027-03-31', TAISHIN),
+  esun_cash: {
+    id: 'esun_cash',
+    name: '玉山熊本熊卡 3.5% 現金回饋',
+    rate: 3.5,
+    unit: 'NT$',
+    start: '2026-01-01',
+    end: '2026-12-31',
+    cap: 100,
+    capPeriod: 'quarter',
+    fullPeriod: null,
+    rounding: 'floor',
+    budget: '不用登錄、不限名額；每筆無條件捨去到元',
+    link: ESUN,
+  },
+  esun_fee: feeWaiver('esun_fee', '2026-01-01', '2026-12-31', ESUN),
+}
+
+export interface Plan {
+  id: string
+  wallet: string
+  source: string
+  campaignIds: string[]
+  tip: string
+}
+
+// Order matches the source document's ranking and breaks ties when sorting.
+export const plans: Plan[] = [
+  {
+    id: 'px-cathay-account',
+    wallet: '全支付',
+    source: '國泰世華銀行帳戶',
+    campaignIds: ['px_main', 'px_cathay_account', 'px_reg4', 'px_fee'],
+    tip: '單筆 NT$1,000 內可同時拿滿兩段',
+  },
+  {
+    id: 'qy-cathay-account',
+    wallet: '全盈+PAY',
+    source: '國泰世華銀行帳戶',
+    campaignIds: ['qy_cathay_account', 'qy_fee'],
+    tip: '全盈+PAY 不是全支付。回饋率最高但名額少，出發時先看官方額滿公告',
+  },
+  {
+    id: 'px-cathay-card',
+    wallet: '全支付',
+    source: '國泰世華信用卡',
+    campaignIds: ['px_main', 'px_cathay_card', 'px_reg4', 'px_fee'],
+    tip: '每筆刷約 NT$1,000 最容易同時符合兩段',
+  },
+  {
+    id: 'px-next-account',
+    wallet: '全支付',
+    source: '將來銀行帳戶',
+    campaignIds: ['px_main', 'px_next_account', 'px_reg4', 'px_fee'],
+    tip: '5% 每週預算最少，四個主力方案中最容易額滿',
+  },
+  {
+    id: 'taishin',
+    wallet: '台新 Pay+',
+    source: '台新 Richart 卡',
+    campaignIds: ['taishin_pay', 'taishin_fee'],
+    tip: '台新 Pay+ 限 NT$50,000／筆、NT$300,000／月',
+  },
+  {
+    id: 'esun',
+    wallet: '玉山 Wallet',
+    source: '玉山熊本熊卡',
+    campaignIds: ['esun_cash', 'esun_fee'],
+    tip: '上限低，但不限名額、確定性高',
+  },
+]
+
+export const unavailable = [
+  { name: 'iPASS MONEY', reason: '第三季活動 9/30 已結束，未見第四季活動（查至 10/11）' },
+  { name: 'LINE Pay', reason: '臺灣 LINE Pay 不能在日本 PayPay 商店付款' },
+  { name: '街口支付', reason: '依個人偏好排除' },
+]
+
+export function rateOf(c: Campaign, s: Settings): number {
+  return typeof c.rate === 'function' ? c.rate(s) : c.rate
+}
+
+export function isRegistered(c: Campaign, s: Settings, date: string): boolean {
+  return !c.registerMonthly || !!s.registered[`${c.id}:${date.slice(0, 7)}`]
+}
+
+/** Campaigns of a plan that pay on `date`: running then, and registered when that is required. */
+export function planCampaigns(plan: Plan, s: Settings, date: string): Campaign[] {
+  return plan.campaignIds
+    .map((id) => campaigns[id])
+    .filter((c) => date >= c.start && date <= c.end && isRegistered(c, s, date))
+}
+
+// ---- Dates and periods. Dates are YYYY-MM-DD strings in Taiwan time, because the wallets
+// record and count payments by their own (Taiwan) transaction time.
+
+function toDate(d: string): Date {
+  const [y, m, day] = d.split('-').map(Number)
+  return new Date(Date.UTC(y, m - 1, day))
+}
+
+export function addDays(d: string, n: number): string {
+  const x = toDate(d)
+  x.setUTCDate(x.getUTCDate() + n)
+  return x.toISOString().slice(0, 10)
+}
+
+export function shortDate(d: string): string {
+  const [, m, day] = d.split('-')
+  return `${Number(m)}/${Number(day)}`
+}
+
+const WEEKDAYS = ['日', '一', '二', '三', '四', '五', '六']
+
+export function dateWithWeekday(d: string): string {
+  return `${shortDate(d)}（${WEEKDAYS[toDate(d).getUTCDay()]}）`
+}
+
+const taiwanDate = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Taipei' })
+
+/** Today's date in Taiwan, whatever time zone the phone is set to. */
+export function taiwanToday(now = new Date()): string {
+  return taiwanDate.format(now)
+}
+
+/** Taiwan today clamped to the trip, so the page shows trip periods before and after the trip too. */
+export function tripDay(now = new Date()): string {
+  const today = taiwanToday(now)
+  if (today < TRIP_START) return TRIP_START
+  if (today > TRIP_END) return TRIP_END
+  return today
+}
+
+function mondayOf(d: string): string {
+  const weekday = (toDate(d).getUTCDay() + 6) % 7
+  return addDays(d, -weekday)
+}
+
+// 國泰世華卡 5% counts its personal cap per wave.
+const WAVES = [
+  { key: 'wave1', start: '2026-09-28', end: '2026-11-01', label: '第一波' },
+  { key: 'wave2', start: '2026-11-02', end: '2026-11-29', label: '第二波' },
+  { key: 'wave3', start: '2026-11-30', end: '2027-01-03', label: '第三波' },
+]
+
+export function periodKey(kind: PeriodKind, d: string): string {
+  switch (kind) {
+    case 'month':
+      return d.slice(0, 7)
+    case 'week':
+      return mondayOf(d)
+    case 'wave':
+      return WAVES.find((w) => d >= w.start && d <= w.end)?.key ?? 'none'
+    case 'quarter':
+      return d.slice(0, 4) + 'Q' + Math.ceil(Number(d.slice(5, 7)) / 3)
+    case 'all':
+      return 'all'
+  }
+}
+
+/** First and last day of a period, or null for a period with no fixed range. */
+function periodRange(kind: PeriodKind, key: string): [string, string] | null {
+  switch (kind) {
+    case 'month': {
+      const [y, m] = key.split('-').map(Number)
+      const next = m === 12 ? `${y + 1}-01-01` : `${y}-${String(m + 1).padStart(2, '0')}-01`
+      return [`${key}-01`, addDays(next, -1)]
+    }
+    case 'week':
+      return [key, addDays(key, 6)]
+    case 'wave': {
+      const w = WAVES.find((x) => x.key === key)
+      return w ? [w.start, w.end] : null
+    }
+    case 'quarter': {
+      const y = key.slice(0, 4)
+      const q = Number(key.slice(5))
+      const first = `${y}-${String(q * 3 - 2).padStart(2, '0')}-01`
+      return [first, periodRange('month', `${y}-${String(q * 3).padStart(2, '0')}`)![1]]
+    }
+    case 'all':
+      return null
+  }
+}
+
+export function periodLabel(kind: PeriodKind, key: string): string {
+  const range = periodRange(kind, key)
+  const span = range ? `${shortDate(range[0])}–${shortDate(range[1])}` : ''
+  switch (kind) {
+    case 'month':
+      return `${Number(key.slice(5))} 月`
+    case 'week':
+      return `週 ${span}`
+    case 'wave':
+      return `${WAVES.find((w) => w.key === key)?.label ?? ''} ${span}`
+    case 'quarter':
+      return `第四季 ${span}`
+    case 'all':
+      return '活動期間'
+  }
+}
+
+/** First day of the next period, or null when the period outlasts the trip. */
+export function nextReset(kind: PeriodKind, d: string): string | null {
+  const range = periodRange(kind, periodKey(kind, d))
+  if (!range) return null
+  const reset = addDays(range[1], 1)
+  return reset <= TRIP_END ? reset : null
+}
+
+/** Period keys that the trip's days fall into, in order. */
+export function tripPeriods(kind: PeriodKind): string[] {
+  const keys: string[] = []
+  for (let d = TRIP_START; d <= TRIP_END; d = addDays(d, 1)) {
+    const k = periodKey(kind, d)
+    if (!keys.includes(k)) keys.push(k)
+  }
+  return keys
+}

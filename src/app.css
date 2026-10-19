@@ -8,6 +8,9 @@
   --code: #14365c;
   --note: #6b5a2a;
   --phone: #1f6b4a;
+  --ok: #1f7a4d;
+  --warn: #a15c00;
+  --off: #b3261e;
   --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   font-family:
     -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'PingFang TC', 'Noto Sans TC',
@@ -29,6 +32,9 @@
     --code: #9cc8ff;
     --note: #d9c27a;
     --phone: #7fd1a8;
+    --ok: #7fd1a8;
+    --warn: #f0b45d;
+    --off: #ff8a80;
   }
 }
 
