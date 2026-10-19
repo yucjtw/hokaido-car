@@ -1,6 +1,7 @@
 // PayPay cashback campaigns for Taiwanese wallets during the trip.
 // Base list: hokaido repo web-data/paypay_2026-10-21_to_11-02.md.
 // Dates, budgets, fee waivers and rounding re-checked on the official pages on 2026-10-19.
+// Where each wallet posts its full-quota notices checked on the official pages on 2026-10-20.
 // Caps and minimums are in NT$; 全點 and 台新 Point are both worth NT$1 each.
 
 export const TRIP_START = '2026-10-21'
@@ -50,8 +51,37 @@ export interface Campaign {
   registerMonthly?: boolean
   /** Fee waiver, not a reward: shown apart and never runs out. */
   fee?: boolean
+  /** Settings title, three parts: wallet, what the wallet must pay from, and which offer (official wording). */
+  label?: { wallet: string; source: string; offer: string }
+  /** Exclusions the official rules add to `label.source`. */
+  sourceNote?: string
   budget: string
+  /** Official rules page. */
   link?: string
+  /** Where the wallet announces that the budget has run out; undefined when no official place was found. */
+  fullNotice?: FullNotice
+  /** Words that tell this campaign's full-quota notice apart from the others in the same list. */
+  noticeKeywords?: string
+}
+
+export interface FullNotice {
+  place: string
+  url?: string
+  how: string
+}
+
+// All 全支付 rules pages say full-quota notices are posted only inside the app.
+// No example of their notice titles was found, so keywords come from each offer's official name.
+const PX_NOTICE: FullNotice = {
+  place: '全支付 App（官網沒有額滿公告）',
+  how: '全支付首頁右上角小鈴鐺 › 上方「通知類別」選「活動通知」',
+}
+// The 全盈+PAY rules (event2023.pluspay.com.tw/2026Q4paypay_cathaybk) say notices go on the 全盈支付 site
+// and the 國泰 campaign page; the 國泰 page has no notice area, and past PayPay notices are on this list.
+const QY_NOTICE: FullNotice = {
+  place: '全盈支付官網',
+  url: 'https://www.pluspay.com.tw/News/activity',
+  how: '最新公告 › 活動消息；標題格式是「【活動額滿公告】活動名稱_10月」',
 }
 
 const PX_MAIN = 'https://marketing.pxpayplus.com/pxplus_marketing_page/activity_content_page?EventId=135'
@@ -88,8 +118,11 @@ export const campaigns: Record<string, Campaign> = {
     cap: 140,
     capPeriod: 'month',
     fullPeriod: 'quarter',
+    label: { wallet: '全支付', source: '帳戶餘額、銀行帳戶、信用卡都算', offer: '主活動 3.5%' },
     budget: '全季總預算 170 萬點；每月點數合併後四捨五入',
     link: PX_MAIN,
+    fullNotice: PX_NOTICE,
+    noticeKeywords: '主活動、3.5%；預算整季共用，額滿就到 12/31 都沒有',
   },
   px_reg4: {
     id: 'px_reg4',
@@ -103,8 +136,11 @@ export const campaigns: Record<string, Campaign> = {
     capPeriod: 'all',
     fullPeriod: 'month',
     registerMonthly: true,
-    budget: '每月月初開放登錄、不限名額；每月總預算 160,000 點',
+    label: { wallet: '全支付', source: '帳戶餘額、銀行帳戶、信用卡都算', offer: '加碼活動 4%（需登錄，單筆滿 NT$3,000）' },
+    budget: '登錄人數不限，但回饋每月總量 160,000 點，大家共用、送完就沒有',
     link: PX_MAIN,
+    fullNotice: PX_NOTICE,
+    noticeKeywords: '加碼活動、需登錄、滿 3,000、4%；每月一期',
   },
   px_cathay_account: {
     id: 'px_cathay_account',
@@ -118,8 +154,12 @@ export const campaigns: Record<string, Campaign> = {
     capPeriod: 'week',
     fullPeriod: 'week',
     rounding: 'round',
+    label: { wallet: '全支付', source: '國泰世華銀行帳戶', offer: '指定帳戶加碼 5%' },
+    sourceNote: '限新臺幣活期存款帳戶；支票存款帳戶、用信用卡驗證的第三類數位存款帳戶不算',
     budget: '每週總預算 80,000 點，約 800 人拿滿',
     link: PX_ACCOUNT,
+    fullNotice: PX_NOTICE,
+    noticeKeywords: '國泰世華、銀行帳戶、5%；每週一期',
   },
   px_cathay_card: {
     id: 'px_cathay_card',
@@ -132,8 +172,11 @@ export const campaigns: Record<string, Campaign> = {
     cap: 100,
     capPeriod: 'wave',
     fullPeriod: 'week',
+    label: { wallet: '全支付', source: '國泰世華信用卡', offer: '指定信用卡加碼 5%（單筆滿 NT$1,000）' },
     budget: '每週總預算 45,000 點，約 450 人拿滿',
     link: PX_CARD,
+    fullNotice: PX_NOTICE,
+    noticeKeywords: '國泰世華、信用卡、滿千；每週一期',
   },
   px_next_account: {
     id: 'px_next_account',
@@ -147,8 +190,11 @@ export const campaigns: Record<string, Campaign> = {
     capPeriod: 'week',
     fullPeriod: 'week',
     rounding: 'round',
+    label: { wallet: '全支付', source: '將來銀行帳戶', offer: '指定帳戶加碼 5%' },
     budget: '每週總預算 20,000 點，約 200 人拿滿',
     link: PX_ACCOUNT,
+    fullNotice: PX_NOTICE,
+    noticeKeywords: '將來銀行、5%；每週一期',
   },
   px_fee: feeWaiver('px_fee', '2026-10-01', '2026-12-31', PX_MAIN),
   qy_cathay_account: {
@@ -161,8 +207,12 @@ export const campaigns: Record<string, Campaign> = {
     cap: 200,
     capPeriod: 'month',
     fullPeriod: 'month',
+    label: { wallet: '全盈+PAY', source: '國泰世華銀行帳戶', offer: '國泰世華帳戶加碼 15%' },
+    sourceNote: '綁定國泰世華簽帳金融卡付款不算',
     budget: '每月總預算 NT$100,000，約 500 人拿滿；2027/2/28 前統一發放',
     link: QY,
+    fullNotice: QY_NOTICE,
+    noticeKeywords: '國泰世華、15%、_10月／_11月。10/10 額滿的「暢遊日本用全盈 滿額享12%」是另一個活動，不是這個',
   },
   qy_fee: feeWaiver('qy_fee', '2026-10-01', '2026-12-31', QY),
   taishin_pay: {

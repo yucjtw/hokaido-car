@@ -4,6 +4,11 @@
 
   // Campaigns whose total budget can run out, once each (fee waivers have no budget).
   const limited = Object.values(campaigns).filter((c) => c.fullPeriod !== null)
+  // Group by where the notice is posted, so one trip to the app or site covers a whole group.
+  const noticeGroups = [...new Set(limited.map((c) => c.fullNotice))].map((notice) => ({
+    notice,
+    campaigns: limited.filter((c) => c.fullNotice === notice),
+  }))
   const registerable = Object.values(campaigns).filter((c) => c.registerMonthly)
 
   let backup = $state('')
@@ -51,7 +56,9 @@
     <span>已設定台新帳戶自動扣繳（3.8%；未設定只有 1.3%）</span>
   </label>
   {#each registerable as c (c.id)}
-    <p class="row-title">{c.name}：每月月初開放登錄，要在付款前登錄</p>
+    <p class="row-title">
+      {c.label ? `${c.label.wallet}｜${c.label.offer}` : c.name}：每月月初開放登錄，要在付款前登錄
+    </p>
     <div class="periods">
       {#each tripPeriods('month') as month (month)}
         {@const id = `${c.id}:${month}`}
@@ -71,27 +78,45 @@
 <section>
   <h2>活動額滿</h2>
   <p class="hint">期別以台灣時間計，日本時間 01:00 換期。勾選總預算已用完的期別。額滿的活動不再計回饋；方案內所有回饋活動都額滿時，方案會從列表隱藏。</p>
-  {#each limited as c (c.id)}
-    {@const kind = c.fullPeriod!}
-    <fieldset>
-      <legend>
-        {#if c.link}<a href={c.link} target="_blank" rel="noreferrer">{c.name}</a>{:else}{c.name}{/if}
-      </legend>
-      <p class="hint">{c.budget}</p>
-      <div class="periods">
-        {#each tripPeriods(kind) as key (key)}
-          {@const id = `${c.id}:${key}`}
-          <label class="period">
-            <input
-              type="checkbox"
-              checked={!!store.settings.full[id]}
-              onchange={(e) => toggle(store.settings.full, id, e.currentTarget.checked)}
-            />
-            {periodLabel(kind, key)}
-          </label>
-        {/each}
-      </div>
-    </fieldset>
+  {#each noticeGroups as g (g.notice?.place ?? 'none')}
+    <div class="where">
+      {#if !g.notice}
+        <b>找不到官方額滿公告位置</b>
+      {:else}
+        <b>
+          到{#if g.notice.url}<a href={g.notice.url} target="_blank" rel="noreferrer">{g.notice.place}</a
+            >{:else}{g.notice.place}{/if}看
+        </b>
+        <span>{g.notice.how}</span>
+      {/if}
+    </div>
+    {#each g.campaigns as c (c.id)}
+      {@const kind = c.fullPeriod!}
+      <fieldset>
+        <legend>
+          {#if c.label}{c.label.wallet}<span class="sep">｜</span>{c.label.source}<span class="sep">｜</span
+            >{c.label.offer}{:else}{c.name}{/if}
+        </legend>
+        {#if c.sourceNote}<p class="hint">{c.sourceNote}</p>{/if}
+        {#if c.noticeKeywords}<p class="notice">公告裡找：{c.noticeKeywords}</p>{/if}
+        <p class="hint">
+          {c.budget}{#if c.link}（<a href={c.link} target="_blank" rel="noreferrer">活動辦法</a>）{/if}
+        </p>
+        <div class="periods">
+          {#each tripPeriods(kind) as key (key)}
+            {@const id = `${c.id}:${key}`}
+            <label class="period">
+              <input
+                type="checkbox"
+                checked={!!store.settings.full[id]}
+                onchange={(e) => toggle(store.settings.full, id, e.currentTarget.checked)}
+              />
+              {periodLabel(kind, key)}
+            </label>
+          {/each}
+        </div>
+      </fieldset>
+    {/each}
   {/each}
 </section>
 
@@ -133,6 +158,23 @@
     margin: 0;
   }
   .hint {
+    color: var(--muted);
+    font-size: 0.8125rem;
+  }
+  .notice {
+    font-size: 0.8125rem;
+  }
+  .sep {
+    color: var(--muted);
+    font-weight: 400;
+  }
+  .where {
+    display: grid;
+    gap: 2px;
+    margin-top: 8px;
+    font-size: 0.875rem;
+  }
+  .where span {
     color: var(--muted);
     font-size: 0.8125rem;
   }
