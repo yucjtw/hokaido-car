@@ -2,11 +2,12 @@
 // Source: hokaido repo web-data/credit_cards_2026-10-21_to_11-02.md, checked on the official pages on 2026-10-19.
 // 中信 LINE Pay 卡 added, and uniopen and SPORT base rates and caps re-checked, on the official pages on 2026-10-20.
 // 富邦 J 卡 added from its official page on 2026-10-20.
+// Whether Apple Pay and Google Pay count was checked on every card's official page on 2026-10-21.
 // Rates are bank-announced cashback or points before the overseas fee; every point is worth NT$1.
 
 import { TRIP_END } from '../paypay/campaigns'
 
-export const CHECKED_ON = '2026-10-20'
+export const CHECKED_ON = '2026-10-21'
 
 /**
  * How a bonus cap resets. Billing-cycle caps depend on each person's statement date, so the
@@ -41,6 +42,8 @@ export interface Card {
   requires?: Requirement
   unit: string
   scope: string
+  /** Whether paying with Apple Pay or Google Pay at the counter still earns the rates above. */
+  wallet: string
   /** Total quota shared by everyone, when there is one. */
   quota?: string
   conditions: string[]
@@ -56,9 +59,9 @@ export const cards: Card[] = [
     bonuses: [{ name: '國外實體商店加碼 8%', rate: 8, cap: 500, period: 'calendar' }],
     unit: 'OPENPOINT',
     scope: '日本一般實體消費、飯店櫃台',
+    wallet: '算：官方寫實體卡、Apple Pay、Google Pay、Samsung Pay 都算；網路、條碼、第三方支付不算',
     conditions: [
       '先在中信 App 連結 uniopen 會員',
-      '實體卡、Apple Pay、Google Pay、Samsung Pay 都算；網路、條碼、第三方支付不算',
       '商店須在次月 5 日前請款',
     ],
     link: 'https://www.ctbcbank.com/twrbo/zh_tw/cc_index/cc_product/cc_introduction_index/C_uniopen.html',
@@ -70,6 +73,8 @@ export const cards: Card[] = [
     bonuses: [{ name: '國外實體加碼 4%', rate: 4, cap: 800, period: 'billing' }],
     unit: '現金回饋',
     scope: '國外實體消費、飯店櫃台',
+    wallet:
+      '官方沒寫算不算，只說依「實體交易註記」判斷，用實體卡最保險。2026/7/1–12/31 新申辦幣倍卡的人，綁 Apple Pay、Google Pay 另加碼 2%（每月上限 NT$200，帳單要顯示支付名稱）',
     conditions: [
       '須符合資產或 DAWHO 等級，設定永豐臺外幣帳戶自動扣繳、電子或行動帳單',
       '飯店若用付款連結或人工輸入卡號請款，可能不算實體交易而拿不到 4% 加碼',
@@ -84,11 +89,13 @@ export const cards: Card[] = [
     requires: { kind: 'once', label: '已登錄', how: '每月 20 日 16:00 起開放登錄，登錄一次適用 10/1–12/31 整季' },
     unit: '刷卡金',
     scope: '日本實體店面、飯店櫃台（面對面交易）',
+    wallet: '日韓泰加碼官方只寫「面對面交易」，沒寫 Apple Pay、Google Pay 算不算，用實體卡最保險',
     quota: '每月 20,000 名、每季 60,000 名',
     conditions: [
       '基本 3% 要設定富邦帳戶自動扣繳或電子帳單（取消紙本），結帳日前生效，否則只有 0.5%',
       '基本回饋依申辦時選的 J Cash 或 J Points（LINE POINTS），加碼 3% 是刷卡金，預計 2027/2 底起發放',
       '儲值不算加碼',
+      'iPhone 另有「日本交通卡加碼 7%」：用 Apple Pay 綁 J 卡儲值 Suica、PASMO、ICOCA，單筆滿 NT$2,000 合計 10%，加碼上限 NT$200；要另外登錄，10 月到 10/31 23:59，Android 不適用',
     ],
     link: 'https://www.fubon.com/banking/personal/credit_card/all_card/omiyage/omiyage.htm',
   },
@@ -106,7 +113,8 @@ export const cards: Card[] = [
       how: '當月在大咖 DACARD App 累積 10,000 大卡，或 Apple Watch 圓滿畫圈 10 次',
     },
     unit: '豐點',
-    scope: '用 Apple Pay、Google Pay、Samsung Pay、Garmin Pay 的一般消費；飯店要支援感應付款',
+    scope: '一般消費；飯店要支援感應付款',
+    wallet: '一定要用：只有 Apple Pay、Google Pay、Samsung Pay、Garmin Pay 才有 3%',
     conditions: ['要用行動支付才有 3%', '電子帳單、永豐或京城帳戶自動扣繳'],
     link: 'https://bank.sinopac.com/sinopacBT/webevents/2008_SportCard2/index.html',
   },
@@ -118,8 +126,10 @@ export const cards: Card[] = [
     requires: { kind: 'monthly', label: '已登錄', how: '每月 1 日 00:00 開放登錄，10 月、11 月要各登錄一次' },
     unit: '好多金',
     scope: '國外實體消費、飯店櫃台',
+    wallet:
+      '官方沒寫算不算，只寫第三方支付不適用；富邦在其他活動把 Apple Pay、Google Pay 算成第三方支付，請用實體卡',
     quota: '每月 50,000 名',
-    conditions: ['第三方支付不適用', '依台灣時間的消費日算月份'],
+    conditions: ['依台灣時間的消費日算月份'],
     link: 'https://efin.taipeifubon.com.tw/bank_bcs/l/10450',
   },
   {
@@ -130,6 +140,7 @@ export const cards: Card[] = [
     requires: { kind: 'once', label: '已登錄', how: '登錄一次，適用 10/1–12/31 整季' },
     unit: '現金回饋',
     scope: '日本等九個亞洲地區實體店面、飯店櫃台',
+    wallet: '算：官方寫實體卡、Apple Pay、Google Pay、Samsung Pay 在實體店付都算；LINE Pay 等第三方支付不算',
     quota: '每月 4,000 名',
     conditions: ['官方寫「每月」、以交易日認定，但沒明寫月界線'],
     link: 'https://www.ctbcbank.com/content/dam/minisite/long/creditcard/TravelTitanium/index.html?rsrc=CTBCcoupon_button1',
@@ -142,9 +153,9 @@ export const cards: Card[] = [
     requires: { kind: 'once', label: '已登錄', how: '在中信活動登錄平台登錄，每週二開放 3,000 名' },
     unit: 'LINE POINTS',
     scope: '國外實體店面、飯店櫃台（面對面交易）',
+    wallet: '算：官方寫實體卡、Apple Pay、Google Pay、Samsung Pay 都算；網路、條碼、第三方支付不算',
     quota: '2.2% 加碼限量 20,000 名，額滿就只剩 2.8%',
     conditions: [
-      '實體卡、Apple Pay、Google Pay、Samsung Pay 都算；網路、條碼、第三方支付不算',
       '加碼 2.2% 從 2027/2/25 起陸續發放',
     ],
     link: 'https://www.ctbcbank.com/content/dam/minisite/long/creditcard/LINEPay/page_travel.html#lightbox_overseas',
