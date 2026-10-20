@@ -76,8 +76,9 @@ export function replay(entries: Entry[], s: Settings): Ledger {
 export interface CampaignStatus {
   campaign: Campaign
   rate: number
-  /** Why the campaign does not pay on this day: outside its dates, or not registered this month. */
-  inactive: '未開始' | '已結束' | '本月未登錄' | null
+  /** Why the campaign does not pay on this day: outside its dates, or its `register` step not done. */
+  inactive: string | null
+  unregistered: boolean
   full: boolean
   /** Reward earned in the current cap period. */
   used: number
@@ -120,14 +121,23 @@ export function planStatus(
   const statuses: CampaignStatus[] = plan.campaignIds.map((id) => {
     const c = campaigns[id]
     const rate = rateOf(c, s)
+    const unregistered = !isRegistered(c, s, day)
+    const ticked = Object.keys(s.registered).some((k) => k.startsWith(`${c.register?.key}:`))
     const inactive =
-      day < c.start ? '未開始' : day > c.end ? '已結束' : !isRegistered(c, s, day) ? '本月未登錄' : null
+      day < c.start
+        ? '未開始'
+        : day > c.end
+          ? '已結束'
+          : unregistered
+            ? ((!ticked && c.register!.never) || c.register!.missing)
+            : null
     const used = c.cap !== undefined ? (ledger.used.get(capKey(c, day)) ?? 0) : 0
     const remaining = c.cap !== undefined ? Math.max(0, c.cap - used) : Infinity
     return {
       campaign: c,
       rate,
       inactive,
+      unregistered,
       full: isFull(c, s, day),
       used,
       remaining,

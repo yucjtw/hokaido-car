@@ -2,6 +2,7 @@
 // Base list: hokaido repo web-data/paypay_2026-10-21_to_11-02.md.
 // Dates, budgets, fee waivers and rounding re-checked on the official pages on 2026-10-19.
 // Where each wallet posts its full-quota notices checked on the official pages on 2026-10-20.
+// 台新 Pay+ new-member offers added from the official page on 2026-10-21.
 // Caps and minimums are in NT$; 全點 and 台新 Point are both worth NT$1 each.
 
 export const TRIP_START = '2026-10-21'
@@ -47,8 +48,8 @@ export interface Campaign {
   fullPeriod: PeriodKind | null
   /** How the wallet rounds each payment's reward, when its terms say. */
   rounding?: 'round' | 'floor'
-  /** Must be registered for each calendar month before paying. */
-  registerMonthly?: boolean
+  /** A step that must be done in a calendar month before this pays, ticked per month in Settings. */
+  register?: Register
   /** Fee waiver, not a reward: shown apart and never runs out. */
   fee?: boolean
   /** Settings title, three parts: wallet, what the wallet must pay from, and which offer (official wording). */
@@ -62,6 +63,37 @@ export interface Campaign {
   fullNotice?: FullNotice
   /** Words that tell this campaign's full-quota notice apart from the others in the same list. */
   noticeKeywords?: string
+}
+
+export interface Register {
+  /** Settings key prefix; campaigns that hinge on the same step share it. */
+  key: string
+  /** Settings title and what to do. */
+  title: string
+  how: string
+  /** Checkbox text after the month. */
+  done: string
+  /** Chip text when the payment's month does not qualify, and when no month is ticked at all. */
+  missing: string
+  never?: string
+  /** A tick also counts for every later month, as for a sign-up; otherwise only for its own month. */
+  carries?: boolean
+}
+
+const PX_REG: Register = {
+  key: 'px_reg4',
+  title: '全支付｜加碼活動 4%（需登錄，單筆滿 NT$3,000）',
+  how: '每月月初開放登錄，要在付款前登錄',
+  done: '已登錄',
+  missing: '本月未登錄',
+}
+
+const TAISHIN_NEW = {
+  key: 'taishin_new',
+  title: '台新 Pay+｜新戶加碼',
+  how: '限從沒註冊過台新 Pay+ 的人（註冊後銷戶再註冊不算），勾註冊的月份。6.2% 只算註冊當月的消費；單筆滿 NT$3,000 送 60 點每月一次',
+  done: '註冊',
+  never: '未註冊',
 }
 
 export interface FullNotice {
@@ -135,7 +167,7 @@ export const campaigns: Record<string, Campaign> = {
     cap: 120,
     capPeriod: 'all',
     fullPeriod: 'month',
-    registerMonthly: true,
+    register: PX_REG,
     label: { wallet: '全支付', source: '帳戶餘額、銀行帳戶、信用卡都算', offer: '加碼活動 4%（需登錄，單筆滿 NT$3,000）' },
     budget: '登錄人數不限，但回饋每月總量 160,000 點，大家共用、送完就沒有',
     link: PX_MAIN,
@@ -226,6 +258,36 @@ export const campaigns: Record<string, Campaign> = {
     budget: '無固定點數上限；設定自動扣繳後，次期帳單結帳後才有 3.8%',
     link: TAISHIN,
   },
+  taishin_new: {
+    id: 'taishin_new',
+    name: '新戶加碼 6.2%（註冊當月）',
+    rate: 6.2,
+    unit: '台新 Point',
+    start: '2026-08-01',
+    end: '2026-12-31',
+    cap: 50,
+    capPeriod: 'all',
+    fullPeriod: 'month',
+    register: { ...TAISHIN_NEW, missing: '非註冊當月' },
+    budget: '每帳號一次、上限 50 點；依每人當月第一筆交易時間排序，每月前 5,000 名',
+    link: TAISHIN,
+  },
+  taishin_new_big: {
+    id: 'taishin_new_big',
+    name: '新戶單筆滿 NT$3,000 送 60 點',
+    rate: 2,
+    unit: '台新 Point',
+    start: '2026-08-01',
+    end: '2026-12-31',
+    minTxn: 3000,
+    perTxn: 60,
+    cap: 60,
+    capPeriod: 'month',
+    fullPeriod: 'month',
+    register: { ...TAISHIN_NEW, missing: '未註冊', carries: true },
+    budget: '每月一次；依交易時間排序，每月前 4,000 名',
+    link: TAISHIN,
+  },
   taishin_fee: feeWaiver('taishin_fee', '2026-07-01', '2027-03-31', TAISHIN),
   esun_cash: {
     id: 'esun_cash',
@@ -286,7 +348,7 @@ export const plans: Plan[] = [
     id: 'taishin',
     wallet: '台新 Pay+',
     source: '台新 Richart 卡',
-    campaignIds: ['taishin_pay', 'taishin_fee'],
+    campaignIds: ['taishin_pay', 'taishin_new', 'taishin_new_big', 'taishin_fee'],
     tip: '台新 Pay+ 限 NT$50,000／筆、NT$300,000／月',
   },
   {
@@ -309,7 +371,11 @@ export function rateOf(c: Campaign, s: Settings): number {
 }
 
 export function isRegistered(c: Campaign, s: Settings, date: string): boolean {
-  return !c.registerMonthly || !!s.registered[`${c.id}:${date.slice(0, 7)}`]
+  const r = c.register
+  if (!r) return true
+  const month = date.slice(0, 7)
+  if (!r.carries) return !!s.registered[`${r.key}:${month}`]
+  return Object.keys(s.registered).some((k) => k.startsWith(`${r.key}:`) && k.slice(r.key.length + 1) <= month)
 }
 
 /** Campaigns of a plan that pay on `date`: running then, and registered when that is required. */

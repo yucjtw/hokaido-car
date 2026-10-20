@@ -9,7 +9,10 @@
     notice,
     campaigns: limited.filter((c) => c.fullNotice === notice),
   }))
-  const registerable = Object.values(campaigns).filter((c) => c.registerMonthly)
+  // One row per step; campaigns that share a step share its ticks.
+  const steps = [
+    ...new Map(Object.values(campaigns).flatMap((c) => (c.register ? [[c.register.key, c.register]] : []))).values(),
+  ]
 
   let backup = $state('')
   let backupMessage = $state('')
@@ -55,20 +58,18 @@
     <input type="checkbox" bind:checked={store.settings.taishinAutoDebit} onchange={save} />
     <span>已設定台新帳戶自動扣繳（3.8%；未設定只有 1.3%）</span>
   </label>
-  {#each registerable as c (c.id)}
-    <p class="row-title">
-      {c.label ? `${c.label.wallet}｜${c.label.offer}` : c.name}：每月月初開放登錄，要在付款前登錄
-    </p>
+  {#each steps as r (r.key)}
+    <p class="row-title">{r.title}：{r.how}</p>
     <div class="periods">
       {#each tripPeriods('month') as month (month)}
-        {@const id = `${c.id}:${month}`}
+        {@const id = `${r.key}:${month}`}
         <label class="period">
           <input
             type="checkbox"
             checked={!!store.settings.registered[id]}
             onchange={(e) => toggle(store.settings.registered, id, e.currentTarget.checked)}
           />
-          {periodLabel('month', month)}已登錄
+          {periodLabel('month', month)}{r.done}
         </label>
       {/each}
     </div>

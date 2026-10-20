@@ -139,8 +139,8 @@
           {/if}
         </div>
         <p class="dates">活動 {shortDate(c.start)}–{shortDate(c.end)}（台灣時間）</p>
-        {#if st.inactive === '本月未登錄'}
-          <p>到「設定」勾選本月已登錄才會計入</p>
+        {#if c.register && st.unregistered && st.inactive}
+          <p>{c.register.how}；到「設定」勾選才會計入</p>
         {/if}
         {#if fullReset}
           <p>總預算 {resetText(fullReset)}，屆時到「設定」取消勾選</p>
