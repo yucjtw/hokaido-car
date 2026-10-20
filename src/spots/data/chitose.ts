@@ -12,6 +12,7 @@ export const chitose: Area = {
       places: [
         {
           name: 'サケのふるさと 千歳水族館',
+          myMap: {},
           category: '其它',
           body: `**9:00–17:00。**インディアン水車通常捕鮭到 12 月上旬，10/30 仍在季節內，但能不能看到大量鮭魚看當天魚群。館內有大型置物櫃。[官網](https://chitose-aq.jp/)`,
         },
@@ -19,6 +20,22 @@ export const chitose: Area = {
           name: '道の駅 サーモンパーク千歳',
           category: '其它',
           body: `與水族館相鄰。[官網](https://www.salmonpark.com/)`,
+        },
+        {
+          name: 'ピザドゥ北海道 千歳本店',
+          query: 'ピザドゥ北海道 千歳本店 稲穂',
+          category: '正餐',
+          myMap: { note: '雨飛推薦，水族館附近' },
+          body: `稲穂 1-1-20。天然酵母麵團、北海道食材，大型柴窯烤披薩，也有自家製香腸。停車 10 台。
+**11:00–18:00（週五、六至 20:00）；週三休。**[旅色](https://tabiiro.jp/gourmet/s/315140-chitose-pizzadeux-hokkaido/)`,
+        },
+        {
+          name: 'もりもと 千歳本店',
+          query: 'もりもと 千歳本店 千代田町',
+          category: '甜點與咖啡',
+          myMap: { note: '旅遊書 麵包 藍靛果' },
+          body: `千代田町 4-12-1。招牌「ハスカップジュエリー」，本店有限定商品和現烤麵包；ハスカップ麵包沒查到，到店再看。停車 29 台。
+**9:00–19:00，不定休。**[官網](https://www.haskapp.co.jp/storelist/)`,
         },
       ],
     },
@@ -64,6 +81,20 @@ export const chitose: Area = {
           name: "Pastry Snaffle's 新千歳空港店",
           category: '甜點與咖啡',
           body: `チーズオムレット（半熟起司蛋糕）。`,
+        },
+      ],
+    },
+    {
+      name: '千歳郊外',
+      note: '開車',
+      places: [
+        {
+          name: '名水ふれあい公園',
+          query: '名水ふれあい公園 蘭越 千歳',
+          category: '其它',
+          myMap: { note: '旅遊書' },
+          body: `千歳市蘭越，紀念內別川湧泉入選「名水百選」的公園，可取水，有沿河步道；順路再去。免費，停車 30 台。
+**開放到 11/15；時段各來源寫 9:00–17:00 或 10:00–18:00。**`,
         },
       ],
     },

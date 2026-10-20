@@ -14,6 +14,7 @@ export const shiraoi: Area = {
       places: [
         {
           name: 'ウポポイ（民族共生象徴空間）',
+          myMap: {},
           category: '其它',
           map: coords(42.5577892, 141.3635063),
           body: `以アイヌ文化為主題的國家級園區，包含国立アイヌ民族博物館、戶外展示與傳統表演。
@@ -30,15 +31,25 @@ export const shiraoi: Area = {
         },
         {
           name: 'ミナピエノ',
+          myMap: { note: 'いぶりジェラートパスポート 2026' },
           category: '甜點與咖啡',
           map: 'https://maps.google.com/?cid=16280150423982907365',
           body: `いぶりジェラートパスポート 2026 參加店。`,
         },
         {
           name: '白老牛の店いわさき おもてなし亭',
+          myMap: { note: 'AI' },
           category: '正餐',
           map: coords(42.5654084, 141.3856505),
           body: `白老牛專門餐廳，可吃牛排、燒肉等料理。`,
+        },
+        {
+          name: '炭火焼レストラン 牛の里',
+          query: '炭火焼レストラン 牛の里 白老',
+          category: '正餐',
+          myMap: { note: 'AI 推' },
+          body: `栄町 1-6-13。自家タケダ牧場的白老牛炭火燒肉，原創漢堡排受歡迎，也可外帶。
+**餐廳 11:00–16:00（最後點餐 15:00）、賣店 10:00–18:30；週二、第 2 和第 4 個週一休。**[白老觀光協會](https://shiraoi.net/gourmet/ushinosato/)`,
         },
       ],
     },
@@ -48,12 +59,14 @@ export const shiraoi: Area = {
       places: [
         {
           name: '北のランプ亭',
+          myMap: { note: '咖郎妹推' },
           category: '正餐',
           map: 'https://maps.app.goo.gl/ccw6ixFsGRBhtHRs8',
           body: `**朋友強推，海鮮燒烤。**`,
         },
         {
           name: 'かに王',
+          myMap: {},
           category: '正餐',
           map: 'https://maps.app.goo.gl/jqq2zrnTnok4X28X6',
           body: `螃蟹相關店家；店種與代表品項出發前確認。`,
@@ -66,9 +79,18 @@ export const shiraoi: Area = {
         },
         {
           name: 'はしもと陶芸館',
+          myMap: { note: 'AI' },
           category: '其它',
           map: coords(42.4762901, 141.2381007),
           body: `陶藝展示與販售空間；是否有體驗課程需另行確認。`,
+        },
+        {
+          name: 'かに料理専門店 かに太郎',
+          query: 'かに太郎 竹浦 白老',
+          category: '正餐',
+          myMap: {},
+          body: `竹浦 116，十二角形建築。「かにめし」一天限量約 20 份，舊口碑只收現金。
+**店主生病後停業，2026 年只有特定日子特別營業，**10/31 有沒有開要先打 0144-87-2993 問。[北海道新聞](https://www.hokkaido-np.co.jp/article/1374499/)`,
         },
       ],
     },
@@ -77,6 +99,7 @@ export const shiraoi: Area = {
       places: [
         {
           name: '三吉丸 かに直売店',
+          myMap: { note: '地圖看到' },
           category: '正餐',
           map: coords(42.4571432, 141.1866192),
           body: `螃蟹直售店（白老町虎杖浜 354-4，0144-87-3999）。[線上預約](https://sankitimaru.base.shop/categories/7410735)可外帶當天燙好的毛蟹：[店頭受取限定 ゆでたて毛ガニ](https://sankitimaru.base.shop/items/148556133)，活重 350〜390g 一隻 ¥2,800，不寄送；開始煮就不能取消、退款。
@@ -87,12 +110,16 @@ export const shiraoi: Area = {
         },
         {
           name: '雲丹 まるひら',
+          myMap: { note: '地圖看到' },
           category: '正餐',
           map: 'https://maps.app.goo.gl/bRq1gK8YrKLLURxr8',
           body: `海膽、鮭魚卵、生魚片。`,
         },
         {
           name: 'なな色のヒカリ',
+          myMap: { note: `登別站旁的觀光交流中心內，用北海道食材做季節口味
+
+いぶりジェラートパスポート 2026` },
           category: '甜點與咖啡',
           map: 'https://maps.google.com/?cid=9240578518320322748',
           body: `登別站旁的觀光交流中心內，用北海道食材做季節口味。`,
@@ -105,15 +132,24 @@ export const shiraoi: Area = {
       places: [
         {
           name: 'PIZZERIA ASTRA',
+          myMap: { note: '咪咪家推' },
           category: '正餐',
           map: coords(42.4928025, 141.1429432),
           body: `朋友推薦的披薩店。`,
         },
         {
           name: '藤崎山葵園',
+          myMap: { note: '旅遊書' },
           category: '其它',
           map: coords(42.4939282, 141.1436512),
           body: `山葵加工品專門店，可找わさび漬等伴手禮。`,
+        },
+        {
+          name: '登別地獄谷',
+          query: '登別地獄谷 登別温泉町',
+          category: '其它',
+          myMap: {},
+          body: `日和山噴發形成、直徑約 450 m 的火山口遺跡，登別溫泉的源頭；免費散步，晚上有「鬼火の路」點燈。停車場一般車 500 日圓。[Visit Hokkaido](https://www.visit-hokkaido.jp/spot/detail_10157.html)`,
         },
       ],
     },
