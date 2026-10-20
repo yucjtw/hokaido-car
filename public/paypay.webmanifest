@@ -1,0 +1,28 @@
+{
+  "name": "北海道 PayPay 回饋",
+  "short_name": "PayPay 回饋",
+  "start_url": "./paypay.html",
+  "scope": "./",
+  "display": "standalone",
+  "lang": "zh-Hant-TW",
+  "background_color": "#f4f2ee",
+  "theme_color": "#f4f2ee",
+  "icons": [
+    {
+      "src": "./icon-paypay-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon-paypay-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon-paypay-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

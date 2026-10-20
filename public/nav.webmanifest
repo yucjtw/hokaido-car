@@ -1,0 +1,28 @@
+{
+  "name": "北海道自駕 Map Code",
+  "short_name": "Map Code",
+  "start_url": "./nav.html",
+  "scope": "./",
+  "display": "standalone",
+  "lang": "zh-Hant-TW",
+  "background_color": "#f4f2ee",
+  "theme_color": "#f4f2ee",
+  "icons": [
+    {
+      "src": "./icon-nav-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon-nav-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon-nav-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
