@@ -2,7 +2,7 @@
   "name": "PayPay 回饋",
   "short_name": "PayPay 回饋",
   "start_url": "./paypay.html",
-  "scope": "./",
+  "scope": "./paypay.html",
   "display": "standalone",
   "lang": "zh-Hant-TW",
   "background_color": "#f4f2ee",

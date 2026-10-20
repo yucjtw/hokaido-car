@@ -2,7 +2,7 @@
   "name": "信用卡回饋",
   "short_name": "信用卡回饋",
   "start_url": "./cards.html",
-  "scope": "./",
+  "scope": "./cards.html",
   "display": "standalone",
   "lang": "zh-Hant-TW",
   "background_color": "#f4f2ee",
