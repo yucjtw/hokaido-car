@@ -116,7 +116,7 @@
   </ul>
 
   <p class="scope">{card.scope}</p>
-  <p class="wallet">手機感應付款：{card.wallet}</p>
+  {#if card.wallet}<p class="wallet">手機感應付款：{card.wallet}</p>{/if}
   <ul class="notes">
     {#if card.quota}<li>名額：{card.quota}</li>{/if}
     {#each card.conditions as c (c)}<li>{c}</li>{/each}
