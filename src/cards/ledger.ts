@@ -5,9 +5,11 @@ export interface Settings {
   rate: number
   /** Keys from `requirementKey` that are registered or done. */
   done: Record<string, boolean>
+  /** Card ids this person does not have. Stored as hidden, so a newly added card shows by default. */
+  hidden: Record<string, boolean>
 }
 
-export const defaultSettings: Settings = { rate: 0.21, done: {} }
+export const defaultSettings: Settings = { rate: 0.21, done: {}, hidden: {} }
 
 export interface Entry {
   id: string

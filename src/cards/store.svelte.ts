@@ -14,14 +14,14 @@ function load(): Saved {
     if (raw) {
       const data = JSON.parse(raw)
       return {
-        settings: { ...defaultSettings, ...data.settings, done: { ...data.settings?.done } },
+        settings: { ...defaultSettings, ...data.settings, done: { ...data.settings?.done }, hidden: { ...data.settings?.hidden } },
         entries: Array.isArray(data.entries) ? data.entries : [],
       }
     }
   } catch {
     // Storage blocked (private mode) or unreadable: start empty; saving will fail visibly.
   }
-  return { settings: { ...defaultSettings, done: {} }, entries: [] }
+  return { settings: { ...defaultSettings, done: {}, hidden: {} }, entries: [] }
 }
 
 export const store = $state(load())

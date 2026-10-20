@@ -3,12 +3,18 @@
   import { cards, CHECKED_ON } from './cards'
   import { save, store } from './store.svelte'
 
-  const required = cards.filter((c) => c.requires)
+  const required = $derived(cards.filter((c) => c.requires && !store.settings.hidden[c.id]))
   const months = tripPeriods('month')
 
   function toggle(key: string, checked: boolean) {
     if (checked) store.settings.done[key] = true
     else delete store.settings.done[key]
+    save()
+  }
+
+  function show(id: string, checked: boolean) {
+    if (checked) delete store.settings.hidden[id]
+    else store.settings.hidden[id] = true
     save()
   }
 </script>
@@ -20,6 +26,19 @@
     <input type="number" inputmode="decimal" step="0.0001" min="0.01" bind:value={store.settings.rate} onchange={save} />
   </label>
   <p class="hint">用來把日幣換成台幣計算上限，改成信用卡帳單上的匯率。</p>
+</section>
+
+<section>
+  <h2>我有的卡</h2>
+  <p class="hint">只顯示勾選的卡。設定存在各自的手機，旅伴可以勾自己的卡。</p>
+  <fieldset class="owned">
+    {#each cards as c (c.id)}
+      <label class="period">
+        <input type="checkbox" checked={!store.settings.hidden[c.id]} onchange={(e) => show(c.id, e.currentTarget.checked)} />
+        {c.name}
+      </label>
+    {/each}
+  </fieldset>
 </section>
 
 <section>
@@ -122,6 +141,9 @@
     display: flex;
     flex-wrap: wrap;
     gap: 6px 16px;
+  }
+  .owned {
+    gap: 10px;
   }
   .period {
     display: flex;

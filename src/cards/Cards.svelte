@@ -17,7 +17,11 @@
 
   const ledger = $derived(replay(store.entries, store.settings))
   const ranked = $derived(
-    rank(cards.map((c, i) => cardStatus(c, i, store.settings, ledger, store.entries, day, nextYen ?? 0))),
+    rank(
+      cards.flatMap((c, i) =>
+        store.settings.hidden[c.id] ? [] : [cardStatus(c, i, store.settings, ledger, store.entries, day, nextYen ?? 0)],
+      ),
+    ),
   )
 
   function select(next: 'cards' | 'settings') {
@@ -50,6 +54,8 @@
     <div class="list">
       {#each ranked as status, i (status.card.id)}
         <CardItem {status} rank={i + 1} rewards={ledger.rewards} {nextYen} />
+      {:else}
+        <p class="meta">沒有要顯示的卡，到「設定」勾選自己有的卡。</p>
       {/each}
     </div>
 
