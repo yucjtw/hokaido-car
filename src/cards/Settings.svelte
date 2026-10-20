@@ -70,7 +70,7 @@
     {@const req = c.requires!}
     <fieldset>
       <legend><a href={c.link} target="_blank" rel="noreferrer">{c.name}</a></legend>
-      <p class="hint">{req.how}{#if c.quota}；名額：{c.quota}{/if}</p>
+      <p class="hint">{req.how}</p>
       <div class="periods">
         {#if req.kind === 'monthly'}
           {#each months as month (month)}

@@ -47,8 +47,6 @@ export interface Card {
    * without it, assume only the physical card does.
    */
   wallet?: string
-  /** Total quota shared by everyone, when there is one. */
-  quota?: string
   conditions: string[]
   link: string
 }
@@ -90,7 +88,6 @@ export const cards: Card[] = [
     requires: { kind: 'once', label: '已登錄', how: '每月 20 日 16:00 起開放登錄，登錄一次適用 10/1–12/31 整季' },
     unit: '刷卡金',
     scope: '日本實體店面、飯店櫃台（面對面交易）',
-    quota: '每月 20,000 名、每季 60,000 名',
     conditions: [
       '基本 3% 要設定富邦帳戶自動扣繳或電子帳單（取消紙本），結帳日前生效，否則只有 0.5%',
       '基本回饋依申辦時選的 J Cash 或 J Points（LINE POINTS），加碼 3% 是刷卡金，預計 2027/2 底起發放',
@@ -126,7 +123,6 @@ export const cards: Card[] = [
     requires: { kind: 'monthly', label: '已登錄', how: '每月 1 日 00:00 開放登錄，10 月、11 月要各登錄一次' },
     unit: '好多金',
     scope: '國外實體消費、飯店櫃台',
-    quota: '每月 50,000 名',
     conditions: ['第三方支付不適用', '依台灣時間的消費日算月份'],
     link: 'https://efin.taipeifubon.com.tw/bank_bcs/l/10450',
   },
@@ -139,7 +135,6 @@ export const cards: Card[] = [
     unit: '現金回饋',
     scope: '日本等九個亞洲地區實體店面、飯店櫃台',
     wallet: 'Google Pay、Apple Pay 也算',
-    quota: '每月 4,000 名',
     conditions: ['官方寫「每月」、以交易日認定，但沒明寫月界線'],
     link: 'https://www.ctbcbank.com/content/dam/minisite/long/creditcard/TravelTitanium/index.html?rsrc=CTBCcoupon_button1',
   },
@@ -152,7 +147,6 @@ export const cards: Card[] = [
     unit: 'LINE POINTS',
     scope: '國外實體店面、飯店櫃台（面對面交易）',
     wallet: 'Google Pay、Apple Pay 也算',
-    quota: '2.2% 加碼限量 20,000 名，額滿就只剩 2.8%',
     conditions: [
       '加碼 2.2% 從 2027/2/25 起陸續發放',
     ],

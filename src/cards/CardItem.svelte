@@ -118,7 +118,6 @@
   <p class="scope">{card.scope}</p>
   {#if card.wallet}<p class="wallet">{card.wallet}</p>{/if}
   <ul class="notes">
-    {#if card.quota}<li>名額：{card.quota}</li>{/if}
     {#each card.conditions as c (c)}<li>{c}</li>{/each}
   </ul>
 
