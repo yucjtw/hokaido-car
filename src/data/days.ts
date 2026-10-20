@@ -149,8 +149,8 @@ export const days: Day[] = [
         spots: [
           {
             name: 'ワールドネットレンタカー 函館空港営業所',
-            mapcode: '86 081 370*42',
-            mapcodeSource: 'https://www.mapion.co.jp/phonebook/M08001/01202/ILSP0059217408_ipclm/',
+            mapcode: '86 081 400*67',
+            mapcodeSource: 'ワールドネットレンタカー 函館空港営業所案內（使用者 Google Maps 筆記；Mapion 為 86 081 370*42）',
             phone: '0138-59-6811',
             address: '函館市高松町220-1',
             note: '取車',
