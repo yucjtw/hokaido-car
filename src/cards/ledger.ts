@@ -82,8 +82,10 @@ export interface CardStatus {
   card: Card
   index: number
   bonuses: BonusStatus[]
-  /** Rate for the next NT$, in percent. */
+  /** Rate for the next NT$ of a payment too small for any per-payment minimum, in percent. */
   rate: number
+  /** Rate once a payment reaches every active bonus's minimum. null when no active bonus has one. */
+  large: { min: number; rate: number } | null
   /** NT$ that keeps `rate`, then `afterRate` applies. null when no bonus is left. */
   hold: { ntd: number; afterRate: number; by: string } | null
   preview: { ntd: number; reward: number; rate: number } | null
@@ -116,13 +118,19 @@ export function cardStatus(
   })
 
   const active = bonuses.filter((b) => b.on && b.remaining > 0)
-  const rate = card.base + active.reduce((sum, b) => sum + b.bonus.rate, 0)
+  // Without an amount typed, rank by what any payment earns; a bonus with a minimum only shows as `large`.
+  const always = active.filter((b) => !b.bonus.min)
+  const rate = card.base + always.reduce((sum, b) => sum + b.bonus.rate, 0)
+  const mins = active.flatMap((b) => (b.bonus.min ? [b.bonus.min] : []))
+  const large = mins.length
+    ? { min: Math.max(...mins), rate: card.base + active.reduce((sum, b) => sum + b.bonus.rate, 0) }
+    : null
 
   let hold: CardStatus['hold'] = null
-  if (active.length) {
-    const first = active.reduce((a, b) => (b.spendLeft < a.spendLeft ? b : a))
+  if (always.length) {
+    const first = always.reduce((a, b) => (b.spendLeft < a.spendLeft ? b : a))
     const afterRate =
-      card.base + active.filter((b) => b.spendLeft > first.spendLeft).reduce((sum, b) => sum + b.bonus.rate, 0)
+      card.base + always.filter((b) => b.spendLeft > first.spendLeft).reduce((sum, b) => sum + b.bonus.rate, 0)
     hold = { ntd: first.spendLeft, afterRate, by: first.bonus.name }
   }
 
@@ -140,6 +148,7 @@ export function cardStatus(
     index,
     bonuses,
     rate,
+    large,
     hold,
     preview,
     spentYen: mine.reduce((sum, e) => sum + e.yen, 0),

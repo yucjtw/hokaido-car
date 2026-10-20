@@ -1,6 +1,6 @@
 <script lang="ts">
   import { dateWithWeekday, shortDate, tripDay } from '../paypay/campaigns'
-  import { num, pct, reward, yenFor } from '../paypay/format'
+  import { num, pct, reward, yenAtLeast, yenFor } from '../paypay/format'
   import type { CardStatus, Entry } from './ledger'
   import { save, store } from './store.svelte'
 
@@ -62,7 +62,7 @@
 </script>
 
 <!-- With an amount typed at the top, the header shows what that payment really earns. -->
-<article class:spent={(status.preview?.rate ?? status.rate) === card.base}>
+<article class:spent={status.preview ? status.preview.rate === card.base : status.rate === card.base && !status.large}>
   <header>
     <span class="rank">{rank}</span>
     <div class="title">
@@ -72,6 +72,9 @@
     <div class="rate">
       {#if status.preview}<small>這筆實拿</small>{/if}
       <strong>{pct(status.preview ? status.preview.rate : status.rate)}</strong>
+      {#if !status.preview && status.large}
+        <small>單筆滿 {yenAtLeast(status.large.min, rate)} {pct(status.large.rate)}</small>
+      {/if}
     </div>
   </header>
 
