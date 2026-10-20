@@ -6,7 +6,7 @@
 ## Project
 
 - Car-navigation quick-reference list for the Hokkaido road trip (10/25, 10/26, 10/27, 10/31), published as a static site on GitHub Pages from the public repo `yucjtw/hokaido-car`. Svelte 5 + Vite, no SvelteKit.
-- Each tool is its own page, added to the phone's home screen as a separate app: `nav.html` (map codes), `paypay.html`, `cards.html`. `index.html` only lists them. A new page needs its entry in `vite.config.ts`, its own `public/<name>.webmanifest` (own `start_url`, no `id`, so each page stays a separate app), icons from `scripts/icon.swift`, `setUpPwa()` in its `main.ts`, and a link in `index.html`.
+- Each tool is its own page, added to the phone's home screen as a separate app: `nav.html` (導航清單, map codes), `paypay.html`, `cards.html`. `index.html` only lists them. A new page needs its entry in `vite.config.ts`, its own `public/<name>.webmanifest` (own `start_url`, no `id`, so each page stays a separate app), icons from `scripts/icon.swift`, `setUpPwa()` in its `main.ts`, and a link in `index.html`.
 - Offline: `service-worker.js` is a template; the build writes `dist/sw.js` with every built and public file listed and a version that changes when any file does. Pages load from the network first and fall back to the saved copy after 3 seconds, so deployed data changes reach phones that are online.
 - All place data lives in `src/data/days.ts`; its shape is in `src/data/types.ts`. Each day has area sections, each section has spots.
 - On load the page opens the tab named in the URL hash, else the tab for the browser's local date, else the next upcoming day, else the first day.

@@ -1,6 +1,6 @@
 {
-  "name": "北海道自駕 Map Code",
-  "short_name": "Map Code",
+  "name": "導航清單",
+  "short_name": "導航清單",
   "start_url": "./nav.html",
   "scope": "./",
   "display": "standalone",
