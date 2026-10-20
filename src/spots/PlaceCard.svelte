@@ -19,7 +19,7 @@
   </div>
   <p class="label">{label}</p>
   {#if place.body}
-    <!-- Long notes stay at three lines until tapped, so the list is quick to scan. -->
+    <!-- Only very long notes are cut, at ten lines, until tapped. -->
     <div class="body" class:open role="button" tabindex="0" onclick={(e) => {
       if (!(e.target instanceof HTMLAnchorElement)) open = !open
     }} onkeydown={(e) => {
@@ -72,8 +72,8 @@
     font-size: 0.875rem;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
+    -webkit-line-clamp: 10;
+    line-clamp: 10;
     overflow: hidden;
     cursor: pointer;
   }

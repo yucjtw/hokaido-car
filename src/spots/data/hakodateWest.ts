@@ -2,8 +2,6 @@ import asaichiMap from '../maps/hakodate-asaichi.webp'
 import bayMap from '../maps/hakodate-bay.webp'
 import type { Area } from '../types'
 
-const placeId = (id: string) => `https://www.google.com/maps/place/?q=place_id:${id}`
-
 export const hakodateWest: Area = {
   id: 'hakodate-west',
   name: '函館西部',
@@ -147,69 +145,58 @@ export const hakodateWest: Area = {
         {
           name: '函館赤レンガ倉庫群（金森紅磚倉庫）',
           category: '其它',
-          map: placeId('ChIJo1BfeKjznl8R-KEsd6JreQ4'),
           body: `灣區核心，逛街與夜景都適合。**9:30–19:00**`,
         },
         {
           name: '函館西波止場',
           category: '其它',
-          map: placeId('ChIJS3_Oi6jznl8RW5drciJ5WoA'),
         },
         {
           name: 'はこだて明治館',
           category: '其它',
-          map: placeId('ChIJbUqBwafznl8RZTRk6I8XkY8'),
           body: `1911 年舊函館郵局改建的商場，玻璃製品／音樂盒／泰迪熊，可做音樂盒手作體驗。**10:00–18:00**`,
         },
         {
           name: 'はこだて海鮮市場 本店',
           category: '其它',
-          map: placeId('ChIJB9v-x6fznl8RIyCzu9NPWbI'),
           body: `伴手禮最好買的一間，約 2000 種商品，附食堂。**9:00–18:00、不定休**（舊書的 7:00–20:00 已過時）。
 **旅遊講座推薦：**食堂用機器點餐付款取號碼牌，螢幕叫號取餐；生魚片拼盤新鮮度不錯。`,
         },
         {
           name: '函館市地域交流まちづくりセンター',
           category: '其它',
-          map: placeId('ChIJn0TNggfznl8RrhqRO1pgncU'),
           body: `舊丸井今井百貨，1923 年建築，免費參觀；有日本少見的手動電梯，跟櫃台說可以搭。**9:00–21:00**`,
         },
         {
           name: '北海道坂本龍馬記念館',
           category: '其它',
-          map: placeId('ChIJyWiMlQfznl8RoxqBBIK3Ceo'),
           body: `龍馬本人未曾到過北海道，館內講他開拓蝦夷地的遺志與後代移居北海道的經過，刀劍展品多。展品量不多且幾乎全日文，順路再去。
 **8:00–17:00，成人約 800–1000 日圓。**`,
         },
         {
           name: '回転寿司 まるかつ水産',
           category: '正餐',
-          map: placeId('ChIJNaqGvKfznl8RriNIHmc56QI'),
           body: `在函館ベイ美食倶楽部內（館內中央有免費天然溫泉足湯）。鮮魚店直營，館內人氣最高。
 **11:30–15:00／16:30–21:00，週三休。**`,
         },
         {
           name: '麺厨房あじさい 紅店',
           category: '正餐',
-          map: placeId('ChIJYzOhuqfznl8R0ASErhMFHvk'),
           body: `在函館ベイ美食倶楽部內。函館鹽味拉麵名店的分店，湯頭清澈。**週四休。**`,
         },
         {
           name: '雅家 ベイエリア店',
           category: '正餐',
-          map: placeId('ChIJo090hGXznl8RPtwDuk9Zu_Y'),
           body: `在函館ベイ美食倶楽部內。海鮮丼，集團自有海產問屋直送。晚間到 22:00。`,
         },
         {
           name: '羊羊亭',
           category: '正餐',
-          map: placeId('ChIJ11O7r6fznl8R-g4GY_XC3lI'),
           body: `在函館ベイ美食倶楽部內。生羔羊成吉思汗，也有八雲豬。`,
         },
         {
           name: 'Pastry Snaffle\'s 金森洋物館店',
           category: '甜點與咖啡',
-          map: placeId('ChIJo1BfeKjznl8RBuoJcZrz_II'),
           body: `金森紅磚倉庫內。起司歐姆蕾，單顆現吃附咖啡。**9:30–19:00**`,
         },
       ],
@@ -221,14 +208,12 @@ export const hakodateWest: Area = {
         {
           name: '五島軒 本店',
           category: '正餐',
-          map: placeId('ChIJ81AILv3znl8RbN02ZsWh22k'),
           body: `1879 年創業的洋食老店，從俄羅斯料理起家，招牌是明治時代傳下來的咖哩（可點 half & half 比較兩種），也有資料展示室與咖哩調理包。
 **11:30–14:30／17:00–20:00，週二休。**需抽號碼牌，尖峰等 15–30 分。`,
         },
         {
           name: '旧函館区公会堂',
           category: '其它',
-          map: placeId('ChIJRw_H56vznl8RMNpSnxrOimg'),
           body: `1910 年木造洋館，國家重要文化財，這區最壯觀的一棟；貴賓室、大廳保存完整，二樓陽台可俯瞰港口。
 **9:00–18:00（週六日至 19:00、11–3 月至 17:00），300 日圓。**與舊英國領事館、北方民族資料館、文學館有 4 館共通券 840 日圓。
 **旅遊講座推薦：**一樓食堂與寢室、二樓大禮堂，有戴帽坐辦公桌的拍照區；夜間打燈後從基坂回望很美，不輸八幡坂。`,
@@ -243,7 +228,6 @@ export const hakodateWest: Area = {
         {
           name: '函館市北方民族資料館',
           category: '其它',
-          map: placeId('ChIJrwfe06jznl8R7rA_DP6mVSY'),
         },
         {
           name: '船魂神社',
@@ -254,86 +238,75 @@ export const hakodateWest: Area = {
         {
           name: '元町公園',
           category: '其它',
-          map: placeId('ChIJ_fU1Xqnznl8R61nWu_NvBqQ'),
           body: `舊北海道廳函館支廳廳舍在園內，現為元町觀光服務處，可免費進去看。書上的函館市寫真歷史館已於 2016 年閉館。`,
         },
         {
           name: '市立函館博物館郷土資料館',
           category: '其它',
-          map: placeId('ChIJPZqQHanznl8Rnq0G_I1tIb4'),
           body: `舊金森洋物店，1880 年建。小而扎實，講函館開港後的發展，二樓特別有意思。
 **9:00–16:30，週一休。**`,
         },
         {
           name: 'CHACHANOBORI',
+          query: 'CHACHANOBORI 函館 元町',
           category: '其它',
-          map: placeId('ChIJMx3doADznl8RcsRAiZHm9gU'),
         },
         {
           name: '茶房 菊泉',
           category: '甜點與咖啡',
-          map: placeId('ChIJRztNKqrznl8REBjaq1v0uHU'),
           body: `1921 年批發酒商別墅改建，招牌豆腐白玉聖代，評價很高。
 **10:00–17:00；舊書寫週四休、Google 顯示無休，去前確認。**`,
         },
         {
           name: "Cafe D'ici",
           category: '甜點與咖啡',
-          map: placeId('ChIJk9iXKgHznl8Rg6vMKaPyVqg'),
           body: `元町 22-9。這區評價最高的咖啡甜點店（4.6）。
 **10:30–18:30，週三、週四休。**`,
         },
         {
           name: '天然酵母パン tombolo',
           category: '甜點與咖啡',
-          map: placeId('ChIJKXsH56nznl8R7i0D5C1eQA0'),
           body: `元町 30-6。這區最好的麵包店，天然酵母歐包，無花果麵包是招牌；店內可切片配咖啡，也賣自製陶器。4.5。
 **11:00–17:00（週一只到 15:00），週二、週三休。**`,
         },
         {
           name: '元町 BON PAN',
+          query: 'BON PAN 函館 末広町',
           category: '甜點與咖啡',
-          map: placeId('ChIJkeICLqjznl8RxJR8M75cYWc'),
           body: `末広町 16-1。街坊型麵包店，咖哩麵包夾半熟蛋、肉桂捲評價最好，便宜。4.4。只外帶，下午常賣完。
 **7:00–18:30，週日休。**`,
         },
         {
           name: 'もみの木DINING',
           category: '正餐',
-          map: placeId('ChIJi3yYhqnznl8RRYlNp1xFG38'),
           body: `元町 14-16。一天只供一種套餐，1000 日圓含漢堡排、小菜、甜點、飲料，家庭味。4.4。
 **11:00–15:00（只做午餐），週一、週日休。**`,
         },
         {
           name: 'RAYMON HOUSE 元町店',
           category: '正餐',
-          map: placeId('ChIJ7aG-4Knznl8RDfYjCvcv3fE'),
           body: `元町 30-3。卡爾雷蒙的德式香腸老店，可內用配地啤，二樓有免費小展覽。4.3。**9:00–18:00**`,
         },
         {
           name: 'Ogicurry（オギカレー）',
           category: '正餐',
-          map: placeId('ChIJAyYoFajznl8RQR4X8394baU'),
           body: `末広町 14-3。香料咖哩，4.4，評論極好，飯量可選。
 **11:00–15:00（週六日到 17:00），週四休。**`,
         },
         {
           name: 'カリフォルニアベイビー',
           category: '正餐',
-          map: placeId('ChIJVcfY96jznl8RsMyY1psrt6Q'),
           body: `末広町 23-15。名物 Cisco Rice（香腸肉醬飯），氣氛懷舊但食物評價普通（3.8）。**週四休。**`,
         },
         {
           name: 'はこだて恋いちご洋菓子店',
           category: '甜點與咖啡',
-          map: placeId('ChIJe38MKnXznl8RDK7K2ODGcz4'),
           body: `末広町 15-1，在「日本最古の電柱」旁。草莓布丁、草莓牛奶霜淇淋，甜度不高。**10:00–18:00、不定休。**
 **旅遊講座推薦：**草莓布丁綿密不甜。招牌「少女の宝石箱」適合拍照，但味道和布丁加草莓蛋糕差不多，點布丁即可。`,
         },
         {
           name: '旧茶屋亭',
           category: '甜點與咖啡',
-          map: placeId('ChIJs3Z2Eajznl8RKyzNqN-tD5w'),
           body: `末広町 14-28。和洋折衷老屋茶館，抹茶與和菓子，4.5。
 **11:30–17:00，週二、週四休。**`,
         },
@@ -352,15 +325,14 @@ export const hakodateWest: Area = {
         },
         {
           name: 'Very Very Beast',
+          query: 'Very Very Beast 函館 宝来町',
           category: '正餐',
-          map: placeId('ChIJtZo-Oqjznl8Rt9kH5fxBzo8'),
           body: `宝来町 23-3。漢堡排和蛋包飯，4.4，不少人說是日本吃過最好的漢堡排；牛排評價普通。
 **12:00–14:00／18:00–21:00。**`,
         },
         {
           name: '千秋庵総本家',
           category: '甜點與咖啡',
-          map: placeId('ChIJDRLRkAbznl8ROcFe16--glw'),
           body: `宝来町 9-9。函館和菓子老店，銅鑼燒、焙茶布丁評價很高。4.4。**9:30–18:00**`,
         },
         {

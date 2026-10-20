@@ -1,7 +1,5 @@
 import type { Area } from '../types'
 
-const placeId = (id: string) => `https://www.google.com/maps/place/?q=place_id:${id}`
-
 export const goryokaku: Area = {
   id: 'goryokaku',
   name: '五稜郭・湯の川',
@@ -20,19 +18,16 @@ export const goryokaku: Area = {
         {
           name: '五稜郭タワー',
           category: '其它',
-          map: placeId('ChIJsw48tWv0nl8RnqjxKCD49XU'),
           body: `**9:00–18:00，成人 1200 日圓**（官網先買約九折）。星形要從塔上看才完整，一開門最少人；觀景台的付費望遠鏡不必試。`,
         },
         {
           name: '箱館奉行所',
           category: '其它',
-          map: placeId('ChIJ5TDNy2v0nl8RsZjyRMhEZF4'),
           body: `依發掘遺構與幕末圖面復原的奉行所。**9:00–17:00，500 日圓，購票只收現金**；入內要脫鞋，建議穿襪子。`,
         },
         {
           name: '北海道立函館美術館',
           category: '其它',
-          map: placeId('ChIJh2FK8m70nl8Rul5Snbaf8AE'),
           body: `就在塔旁，常設展規模不大，有想看的特展再進去。**9:30–17:00，週一休。**`,
         },
         {
@@ -45,20 +40,19 @@ export const goryokaku: Area = {
         {
           name: '麺厨房あじさい 本店',
           category: '正餐',
-          map: placeId('ChIJjQHAJmz0nl8RS2bHlhayAL4'),
           body: `函館鹽味拉麵本店（紅店的本家）。**10:30–20:25，週三休**，尖峰排 30 分以上。`,
         },
         {
           name: 'Old New Cafe',
+          query: 'Old New Cafe 函館 本町',
           category: '正餐',
-          map: placeId('ChIJ6QpBcHr0nl8RMDK8Fb7Pgyw'),
           body: `本町 32-6。午餐義大利麵附前菜拼盤，冬季的タチ（鱈魚白子）麵是招牌。4.3。
 **11:00–19:00，週一休，只收現金**，無停車場。`,
         },
         {
           name: 'cafe88',
+          query: 'cafe88 函館 本町',
           category: '甜點與咖啡',
-          map: placeId('ChIJXfKcQyn1nl8Rcf_vVHltY54'),
           body: `本町 7-8。4.5，甜點評價高（尖果琴帕菲、肉桂甜甜圈）。座位少且不接候位。
 **11:00–16:00／17:00–20:00，週日休。**`,
         },
@@ -83,25 +77,22 @@ export const goryokaku: Area = {
         {
           name: '湯倉神社',
           category: '其它',
-          map: placeId('ChIJMQw0B-30nl8RvNXmL1kA7F4'),
           body: `市電湯の川終點站附近，湯の川温泉發祥地的總鎮守；境內「なでうさぎ」與兔子御守、御籤是人氣。**8:30–17:30**`,
         },
         {
           name: '湯の川温泉足湯 湯巡り舞台',
           category: '其它',
-          map: placeId('ChIJYytFuJP0nl8RoNDeh6Xs__Q'),
           body: `市電湯の川温泉站旁，**免費，9:00–21:00**。水溫偏燙，記得帶小毛巾。`,
         },
         {
           name: '丸山園茶舗 湯の川店',
           category: '甜點與咖啡',
-          map: placeId('ChIJnTVa4Oz0nl8R367U_mH2_bQ'),
           body: `茶葉店兼內用，抹茶配和菓子約 800 日圓。**11:00–16:00，週日休**（評論數很少，參考性有限）。`,
         },
         {
           name: '銀月',
+          query: '銀月 団子 函館 湯川町',
           category: '甜點與咖啡',
-          map: placeId('ChIJi5pBGZP0nl8RundNK9ypH7A'),
           body: `團子老店，醤油、芝麻口味評價最好（4.4）。**8:30–17:00，週二、週三休**；不少評論提到店員態度倉促。`,
         },
         {
@@ -112,8 +103,8 @@ export const goryokaku: Area = {
         },
         {
           name: '幸寿司',
+          query: '幸寿司 函館 湯川町',
           category: '正餐',
-          map: placeId('ChIJA_w--ZL0nl8R9ibinTGfrcc'),
           body: `二代目是法料出身，有創作壽司與季節套餐。**12:00–14:30／17:30–22:30，建議先訂位。**`,
         },
         {
