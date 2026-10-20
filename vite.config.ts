@@ -51,6 +51,7 @@ export default defineConfig({
         nav: root('nav.html'),
         paypay: root('paypay.html'),
         cards: root('cards.html'),
+        spots: root('spots.html'),
       },
     },
   },
