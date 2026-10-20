@@ -1,6 +1,7 @@
 // Credit cards for in-person payments in Japan during the trip.
 // Source: hokaido repo web-data/credit_cards_2026-10-21_to_11-02.md, checked on the official pages on 2026-10-19.
 // 中信 LINE Pay 卡 added, and uniopen and SPORT base rates and caps re-checked, on the official pages on 2026-10-20.
+// 富邦 J 卡 added from its official page on 2026-10-20.
 // Rates are bank-announced cashback or points before the overseas fee; every point is worth NT$1.
 
 import { TRIP_END } from '../paypay/campaigns'
@@ -19,6 +20,8 @@ export interface Bonus {
   /** Most reward per period, in the card's points (NT$1 each). */
   cap: number
   period: Period
+  /** Smallest single payment in NT$ that earns this bonus; smaller ones get only the base rate. */
+  min?: number
 }
 
 /** A step without which no bonus pays: a registration, or SPORT's monthly exercise goal. */
@@ -72,6 +75,22 @@ export const cards: Card[] = [
       '飯店若用付款連結或人工輸入卡號請款，可能不算實體交易而拿不到 4% 加碼',
     ],
     link: 'https://bank.sinopac.com/sinopacBT/personal/credit-card/introduction/bankcard/dual-currency-card.html',
+  },
+  {
+    id: 'fubon-j',
+    name: '富邦 J 卡「日韓泰實體」',
+    base: 3,
+    bonuses: [{ name: '日韓泰實體加碼 3%（單筆滿 NT$1,000）', rate: 3, cap: 1000, period: 'campaign', min: 1000 }],
+    requires: { kind: 'once', label: '已登錄', how: '每月 20 日 16:00 起開放登錄，登錄一次適用 10/1–12/31 整季' },
+    unit: '刷卡金',
+    scope: '日本實體店面、飯店櫃台（面對面交易）',
+    quota: '每月 20,000 名、每季 60,000 名',
+    conditions: [
+      '基本 3% 要設定富邦帳戶自動扣繳或電子帳單（取消紙本），結帳日前生效，否則只有 0.5%',
+      '基本回饋依申辦時選的 J Cash 或 J Points（LINE POINTS），加碼 3% 是刷卡金，預計 2027/2 底起發放',
+      '儲值不算加碼',
+    ],
+    link: 'https://www.fubon.com/banking/personal/credit_card/all_card/omiyage/omiyage.htm',
   },
   {
     id: 'sport',

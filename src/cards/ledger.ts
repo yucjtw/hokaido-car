@@ -33,6 +33,7 @@ export function bonusesOn(card: Card, s: Settings, date: string): boolean {
 
 function bonusFor(card: Card, i: number, ntd: number, date: string, used: Used): number {
   const b = card.bonuses[i]
+  if (b.min && ntd < b.min) return 0
   return Math.min((ntd * b.rate) / 100, Math.max(0, b.cap - (used.get(usedKey(card, i, date)) ?? 0)))
 }
 
