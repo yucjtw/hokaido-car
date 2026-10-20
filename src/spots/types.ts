@@ -10,6 +10,8 @@ export interface Place {
   query?: string
   /** Free text in Traditional Chinese, including opening hours and closing days. Supports **bold**, ~~strike~~, [text](url) and "- " lists. */
   body?: string
+  /** Set when the place is saved in the user's own Google Maps list; `note` is the user's note there, copied as is. */
+  myMap?: { note?: string }
 }
 
 /** Places within walking distance of each other. */

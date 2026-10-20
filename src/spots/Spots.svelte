@@ -35,6 +35,8 @@
       .filter((group) => group.items.length)
   })
 
+  const hasMyMap = $derived(current.subAreas.some((sub) => sub.places.some((place) => place.myMap)))
+
   function readView(): View {
     try {
       return localStorage.getItem(viewKey) === 'category' ? 'category' : 'subArea'
@@ -84,6 +86,7 @@
 
 <main>
   {#if current.note}<div class="area-note">{@html renderBody(current.note)}</div>{/if}
+  {#if hasMyMap}<p class="legend">📌 表示存在我的 Google Maps 清單</p>{/if}
 
   {#each groups as group (group.title)}
     <section>
@@ -180,6 +183,11 @@
   }
   .area-note :global(a) {
     color: var(--code);
+  }
+  .legend {
+    margin: 0 0 12px;
+    color: var(--muted);
+    font-size: 0.8125rem;
   }
   section {
     margin-bottom: 20px;

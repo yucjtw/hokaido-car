@@ -14,18 +14,22 @@
 
 <li>
   <div class="head">
-    <p class="name" lang="ja">{place.name}</p>
+    <p class="name">
+      <span lang="ja">{place.name}</span>
+      {#if place.myMap}<span class="saved" role="img" aria-label="在我的 Google Maps 清單" title="在我的 Google Maps 清單">📌</span>{/if}
+    </p>
     <a class="map" href={mapUrl} target="_blank" rel="noopener">地圖</a>
   </div>
   <p class="label">{label}</p>
-  {#if place.body}
+  {#if place.body || place.myMap?.note}
     <!-- Only very long notes are cut, at ten lines, until tapped. -->
     <div class="body" class:open role="button" tabindex="0" onclick={(e) => {
       if (!(e.target instanceof HTMLAnchorElement)) open = !open
     }} onkeydown={(e) => {
       if (e.key === 'Enter') open = !open
     }}>
-      {@html renderBody(place.body)}
+      {#if place.myMap?.note}<p class="my-note"><strong>map 筆記：</strong>{place.myMap.note}</p>{/if}
+      {#if place.body}{@html renderBody(place.body)}{/if}
     </div>
   {/if}
 </li>
@@ -60,6 +64,17 @@
     font-size: 0.8125rem;
     font-weight: 600;
     text-decoration: none;
+  }
+  .saved {
+    margin-left: 4px;
+    font-size: 0.875rem;
+  }
+  .my-note {
+    padding: 6px 8px;
+    border-radius: 6px;
+    background: var(--bg);
+    white-space: pre-line;
+    overflow-wrap: anywhere;
   }
   .label {
     margin-top: 1px;
