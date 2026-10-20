@@ -95,8 +95,10 @@ export interface PlanStatus {
   plan: Plan
   index: number
   campaigns: CampaignStatus[]
-  /** Reward rate plus fee waiver for the next payment, in percent. */
+  /** Reward rate plus fee waiver for the next payment too small for any per-payment minimum, in percent. */
   rate: number
+  /** Per-payment minimums that raise the rate, lowest first, with the rate a payment of exactly that NT$ gets. */
+  large: { min: number; rate: number }[]
   feeRate: number
   /** NT$ that keeps `rate`, then `afterRate` applies. null when nothing caps it. */
   hold: { ntd: number; afterRate: number; by: string } | null
@@ -137,28 +139,50 @@ export function planStatus(
   })
 
   const active = statuses.filter((st) => !st.inactive && !st.full && st.remaining > 0)
-  const rate = active.reduce((sum, st) => sum + st.rate, 0)
-  const feeRate = active.filter((st) => st.campaign.fee).reduce((sum, st) => sum + st.rate, 0)
+  // Without an amount typed, rank by what any payment earns; campaigns with a minimum only show in `large`.
+  const always = active.filter((st) => !st.campaign.minTxn)
+  const rate = always.reduce((sum, st) => sum + st.rate, 0)
+  const feeRate = always.filter((st) => st.campaign.fee).reduce((sum, st) => sum + st.rate, 0)
 
   let hold: PlanStatus['hold'] = null
-  const capped = active.filter((st) => st.spendLeft !== Infinity)
+  const capped = always.filter((st) => st.spendLeft !== Infinity)
   if (capped.length) {
     const first = capped.reduce((a, b) => (b.spendLeft < a.spendLeft ? b : a))
-    const afterRate = active.filter((st) => st.spendLeft > first.spendLeft).reduce((sum, st) => sum + st.rate, 0)
+    const afterRate = always.filter((st) => st.spendLeft > first.spendLeft).reduce((sum, st) => sum + st.rate, 0)
     hold = { ntd: first.spendLeft, afterRate, by: first.campaign.name }
   }
 
-  let preview: PlanStatus['preview'] = null
-  if (nextYen > 0) {
-    const ntd = nextYen * s.rate
+  /** Reward and fee waiver for one payment of `ntd` on `day`. */
+  function payment(ntd: number) {
     let reward = 0
     let fee = 0
-    const notes: string[] = []
     for (const st of statuses) {
       if (st.inactive) continue
       const r = rewardFor(st.campaign, s, ntd, day, ledger.used, false)
       if (st.campaign.fee) fee += r
       else reward += r
+    }
+    return { reward, fee }
+  }
+
+  const mins = [...new Set(active.flatMap((st) => (st.campaign.minTxn ? [st.campaign.minTxn] : [])))].sort(
+    (a, b) => a - b,
+  )
+  // Per-payment caps can make a larger payment earn no more, so keep a minimum only when it raises the rate.
+  const large: PlanStatus['large'] = []
+  for (const min of mins) {
+    const { reward, fee } = payment(min)
+    const r = ((reward + fee) / min) * 100
+    if (r > (large.at(-1)?.rate ?? rate) + 0.05) large.push({ min, rate: r })
+  }
+
+  let preview: PlanStatus['preview'] = null
+  if (nextYen > 0) {
+    const ntd = nextYen * s.rate
+    const { reward, fee } = payment(ntd)
+    const notes: string[] = []
+    for (const st of statuses) {
+      if (st.inactive) continue
       if (!st.full && st.campaign.minTxn && ntd < st.campaign.minTxn) notes.push(`未達 ${st.campaign.name} 的單筆門檻`)
       // NT$1 of slack, so a yen amount that converts to NT$1,000.02 does not warn.
       else if (!st.full && st.perTxnSpend !== null && ntd - st.perTxnSpend >= 1)
@@ -186,6 +210,7 @@ export function planStatus(
     index,
     campaigns: statuses,
     rate,
+    large,
     feeRate,
     hold,
     hidden: rewardCampaigns.length > 0 && rewardCampaigns.every((st) => st.full),

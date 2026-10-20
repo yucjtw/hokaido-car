@@ -82,7 +82,7 @@
 </script>
 
 <!-- With an amount typed at the top, the header shows what that payment really earns. -->
-<article class:spent={(status.preview?.rate ?? status.rate) === status.feeRate}>
+<article class:spent={status.preview ? status.preview.reward === 0 : status.rate === status.feeRate && !status.large.length}>
   <header>
     <span class="rank">{rank}</span>
     <div class="title">
@@ -97,6 +97,7 @@
       {:else}
         <strong>{pct(status.rate)}</strong>
         {#if status.feeRate}<small>含免手續費 {pct(status.feeRate)}</small>{/if}
+        {#each status.large as l (l.min)}<small>單筆滿 {yenAtLeast(l.min, rate)} {pct(l.rate)}</small>{/each}
       {/if}
     </div>
   </header>
