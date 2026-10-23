@@ -20,6 +20,8 @@ export interface SubArea {
   note?: string
   /** Area map image URL, imported from ./maps so the build hashes it and saves it offline. */
   image?: string
+  /** Additional maps shown together in the area's expandable map section. */
+  images?: string[]
   places: Place[]
 }
 

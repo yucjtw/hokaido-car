@@ -19,7 +19,7 @@
       return current.subAreas.map((sub) => ({
         title: sub.name,
         note: sub.note,
-        image: sub.image,
+        images: [...(sub.image ? [sub.image] : []), ...(sub.images ?? [])],
         items: sub.places.map((place) => ({ place, label: place.category })),
       }))
     }
@@ -27,7 +27,7 @@
       .map((category) => ({
         title: category,
         note: undefined,
-        image: undefined,
+        images: [],
         items: current.subAreas.flatMap((sub) =>
           sub.places.filter((place) => place.category === category).map((place) => ({ place, label: sub.name })),
         ),
@@ -94,12 +94,14 @@
         {group.title}
         {#if group.note}<small>{group.note}</small>{/if}
       </h2>
-      {#if group.image}
+      {#if group.images.length}
         <details class="image">
           <summary>區域地圖</summary>
-          <a href={group.image} target="_blank" rel="noopener">
-            <img src={group.image} alt={`${group.title}地圖`} loading="lazy" />
-          </a>
+          {#each group.images as image, index (image)}
+            <a href={image} target="_blank" rel="noopener">
+              <img src={image} alt={`${group.title}地圖 ${index + 1}`} loading="lazy" />
+            </a>
+          {/each}
         </details>
       {/if}
       <ul>

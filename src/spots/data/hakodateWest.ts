@@ -1,5 +1,7 @@
 import asaichiMap from '../maps/hakodate-asaichi.webp'
 import bayMap from '../maps/hakodate-bay.webp'
+import motomachiMap from '../maps/hakodate-motomachi.webp'
+import motomachiWalkMap from '../maps/hakodate-motomachi-walk.webp'
 import type { Area } from '../types'
 
 export const hakodateWest: Area = {
@@ -324,6 +326,8 @@ export const hakodateWest: Area = {
     {
       name: '元町・末広町',
       note: '十字街 → 二十間坂 → 元町 → 八幡坂 → 元町公園 → 基坂',
+      image: motomachiMap,
+      images: [motomachiWalkMap],
       places: [
         {
           name: '五島軒 本店',
