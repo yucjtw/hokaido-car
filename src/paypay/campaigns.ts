@@ -103,7 +103,7 @@ export interface FullNotice {
 }
 
 // All 全支付 rules pages say full-quota notices are posted only inside the app.
-// No example of their notice titles was found, so keywords come from each offer's official name.
+// App names for the main offer and bank-account offers follow the user's screenshots (2026-10-23).
 const PX_NOTICE: FullNotice = {
   place: '全支付 App（官網沒有額滿公告）',
   how: '全支付首頁右上角小鈴鐺 › 上方「通知類別」選「活動通知」',
@@ -150,11 +150,11 @@ export const campaigns: Record<string, Campaign> = {
     cap: 140,
     capPeriod: 'month',
     fullPeriod: 'quarter',
-    label: { wallet: '全支付', source: '帳戶餘額、銀行帳戶、信用卡都算', offer: '主活動 3.5%' },
+    label: { wallet: '全支付', source: '帳戶餘額、銀行帳戶、信用卡都算', offer: '日本跨境｜筆筆享3.5%回饋' },
     budget: '全季總預算 170 萬點；每月點數合併後四捨五入',
     link: PX_MAIN,
     fullNotice: PX_NOTICE,
-    noticeKeywords: '玩日本、主活動、3.5%；預算整季共用，額滿就到 12/31 都沒有',
+    noticeKeywords: 'App 點數紀錄名稱「10月｜日本跨境｜筆筆享3.5%回饋」（月份依當月顯示）；預算整季共用，額滿就到 12/31 都沒有',
   },
   px_reg4: {
     id: 'px_reg4',
@@ -186,12 +186,12 @@ export const campaigns: Record<string, Campaign> = {
     capPeriod: 'week',
     fullPeriod: 'week',
     rounding: 'round',
-    label: { wallet: '全支付', source: '國泰世華銀行帳戶', offer: '指定帳戶加碼 5%' },
+    label: { wallet: '全支付', source: '國泰世華銀行帳戶', offer: '週週｜國泰世華銀行｜日本PayPay消費回饋活動' },
     sourceNote: '限新臺幣活期存款帳戶；支票存款帳戶、用信用卡驗證的第三類數位存款帳戶不算',
     budget: '每週總預算 80,000 點，約 800 人拿滿',
     link: PX_ACCOUNT,
     fullNotice: PX_NOTICE,
-    noticeKeywords: '日本跨境、國泰世華、銀行帳戶、5%；每週一期',
+    noticeKeywords: '「《週週｜國泰世華銀行｜日本PayPay消費回饋活動》本週額滿公告」對應這個帳戶加碼 5%，不是信用卡加碼；每週一期，只勾公告所屬週別',
   },
   px_cathay_card: {
     id: 'px_cathay_card',
@@ -222,11 +222,11 @@ export const campaigns: Record<string, Campaign> = {
     capPeriod: 'week',
     fullPeriod: 'week',
     rounding: 'round',
-    label: { wallet: '全支付', source: '將來銀行帳戶', offer: '指定帳戶加碼 5%' },
+    label: { wallet: '全支付', source: '將來銀行帳戶', offer: '週週｜將來銀行｜日本PayPay消費回饋活動' },
     budget: '每週總預算 20,000 點，約 200 人拿滿',
     link: PX_ACCOUNT,
     fullNotice: PX_NOTICE,
-    noticeKeywords: '日本跨境、將來銀行、5%；每週一期',
+    noticeKeywords: '「《週週｜將來銀行｜日本PayPay消費回饋活動》本週額滿公告」對應這個帳戶加碼 5%；每週一期，只勾公告所屬週別',
   },
   px_fee: feeWaiver('px_fee', '2026-10-01', '2026-12-31', PX_MAIN),
   qy_cathay_account: {
