@@ -64,17 +64,6 @@ export const hakodateMotomachi: Area = {
 2026/10/23 查詢：[函館市觀光網站](https://www.hakobura.jp/spots/297)／[店家食べログ](https://tabelog.com/hokkaido/A0105/A010501/1069985/)／[店家 Instagram](https://www.instagram.com/ozigibrewing/)`,
         },
         {
-          name: '回転寿司 まるかつ水産',
-          category: '正餐',
-          body: `在函館ベイ美食倶楽部內（館內中央有免費天然溫泉足湯）。鮮魚店直營，館內人氣最高。
-**11:30–15:00／16:30–21:00，週三休。**`,
-        },
-        {
-          name: '麺厨房あじさい 紅店',
-          category: '正餐',
-          body: `在函館ベイ美食倶楽部內。函館鹽味拉麵名店的分店，湯頭清澈。**週四休。**`,
-        },
-        {
           name: '雅家 ベイエリア店',
           category: '正餐',
           body: `在函館ベイ美食倶楽部內。海鮮丼，集團自有海產問屋直送。晚間到 22:00。`,

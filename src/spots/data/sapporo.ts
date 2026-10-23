@@ -21,7 +21,8 @@ export const sapporo: Area = {
         {
           name: '回転寿司 根室花まる JRタワーステラプレイス店',
           category: '正餐',
-          body: `**在地部落客ジョニー列為札幌回転寿司第一名**；最貴盤約 420 円，兩人放開吃約 5,000 円。必點花咲蟹の鉄砲汁、魚のアラ汁，另推真たち軍艦、紅鮭すじこ醤油漬け、一本あなご。
+          body: `**誌麟姐姐講座推薦品牌。**
+**在地部落客ジョニー列為札幌回転寿司第一名**；最貴盤約 420 円，兩人放開吃約 5,000 円。必點花咲蟹の鉄砲汁、魚のアラ汁，另推真たち軍艦、紅鮭すじこ醤油漬け、一本あなご。
 ステラプレイス 6F，在大丸札幌店隔壁，可與展覽同日。不接受預約，店頭発券機 **10:00** 起受付，建議先取號再去看展。
 **11:00–22:00（最後點餐 21:30）；官方列 10/27（二）、10/28（三）全系統店休，札幌段只能排 10/29（四）。**
 想少排隊可改[大同生命札幌ビル miredo店](https://www.sushi-hanamaru.com/store/details/_miredo.html?p=a)（11:00–22:00）或[ココノススキノ店](https://www.sushi-hanamaru.com/store/details/cocono.html)（11:00–21:00，可用 QR 遠端看待組數）。[官網](https://www.sushi-hanamaru.com/store/details/s03.html)／[部落格](https://johnny88.jp/sapporo-conveyorbelt-sushi/)`,
@@ -143,6 +144,18 @@ https://maps.app.goo.gl/v62mLwtHYefCGTGM7
 還車前，請到指定地點把油加滿並保留收據
 若未事先加油，將收取目視測定的油量+5公升（手續費）的費用。` },
           body: `還車。東区北10条東 3-2-45，**9:00–19:00**；有接駁車到 JR 札幌駅北口。[官網](https://worldnet-rentacar.co.jp/zh/office/sapporo-sta/)`,
+        },
+      ],
+    },
+    {
+      name: '札幌駅北東側',
+      places: [
+        {
+          name: '回転寿し トリトン 北8条光星店',
+          category: '正餐',
+          body: `**誌麟姐姐講座推薦品牌；分店依區域挑選。**回轉壽司，東区北8条東5丁目19-1。
+**11:00–22:00（最後點餐 21:30）；不接受座位預約。**混雜時營業時間可能調整。
+2026/10/23 查詢：[官網](https://toriton-kita1.jp/shop/kita8/)`,
         },
       ],
     },
