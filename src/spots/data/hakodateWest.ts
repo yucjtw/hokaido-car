@@ -49,6 +49,15 @@ export const hakodateWest: Area = {
 **17:30–翌 1:00，無休。**[大門横丁](https://www.hakodate-yatai.com/shop/cheez)`,
         },
         {
+          name: 'café akira',
+          query: 'cafe akira 函館 大手町12-11',
+          category: '正餐',
+          body: `大手町（おおてまち）12-11，市役所前電停旁，ベイエリア往函館駅方向。自家烘豆咖啡館，也供應洋食；Yahoo!マップ 3.97／30 則。
+**ビーフシチュー套餐候選，現價與當日供應待確認。**食べログ店家菜單列燉牛肉單點／套餐，但價格更新於 2018 年，不作現價；旅色與 Retty 也有介紹此品項。
+**官網 10:30–18:00、不定休；10/23 當日營業待確認。**其他平台列週日休，仍以官網不定休為準。先打 0138-27-2474 確認。
+2026/10/23 查詢：[官網](http://www.cafe-akira.com/)／[菜單與更新日期](https://tabelog.com/hokkaido/A0105/A010501/1051543/dtlmenu/)／[評價](https://map.yahoo.co.jp/v3/place/NYczM5K2r_-)`,
+        },
+        {
           name: 'パティスリー ラパン・ド・ネージュ',
           query: 'ラパン・ド・ネージュ 大手町 函館',
           category: '甜點與咖啡',
@@ -254,6 +263,22 @@ export const hakodateWest: Area = {
 **8:00–17:00，成人約 800–1000 日圓。**`,
         },
         {
+          name: 'ラ・コンチャ・イ・バスク',
+          query: 'ラ コンチャ イ バスク 函館 末広町14-6',
+          category: '正餐',
+          body: `末広町 14-6，金森倉庫附近，歷史老屋裡的西班牙／バスク料理。**官方網站菜單列有ビーフシチュー，未稅 2,400 日圓；加 10% 試算 2,640 日圓，實收與當日供應須確認。**也有ピンチョス、海鮮飯。Tripadvisor 4.2／62 則（整店評價）。
+**週五 17:00–23:00（最後點餐 22:00）；週一、第 1 個週二休。10/23（五）依通常規則營業，未電話確認。**官網建議先訂位：0138-27-2181。首頁仍有僅收現金公告。
+2024 年重開後改為現名；官網未標菜單更新日。2026/10/23 查詢：[官網](https://www.vascu.com/laconcha/)／[菜單](https://www.vascu.com/laconcha/menu)／[營業時間](https://www.vascu.com/laconcha/access)／[評價](https://www.tripadvisor.jp/Restaurant_Review-g298151-d1951762-Reviews-La_Concha-Hakodate_Hokkaido.html)`,
+        },
+        {
+          name: 'ozigi',
+          query: 'ozigi 函館 末広町16-13',
+          category: '正餐',
+          body: `末広町 16-13，倉庫改建、附設釀酒廠的ビアバー。食べログ 3.42／50 則。**燉牛肉候選，現在是否供應待確認：**2022 年在地電視台取材有ビーフシチュー マディラワイン風味；當時 2,000 日圓、晚間座位費 500 日圓都是舊價，不能當成現價。
+**平日 17:00–22:00（料理最後點餐 21:15），週二、週三休；週末 14:00 開。10/23（五）依通常規則營業，未電話確認。**若專程吃燉牛肉，先打 0138-24-2021 確認料理與價格。
+2026/10/23 查詢：[函館市觀光網站](https://www.hakobura.jp/spots/297)／[店家食べログ](https://tabelog.com/hokkaido/A0105/A010501/1069985/)／[店家 Instagram](https://www.instagram.com/ozigibrewing/)`,
+        },
+        {
           name: '回転寿司 まるかつ水産',
           category: '正餐',
           body: `在函館ベイ美食倶楽部內（館內中央有免費天然溫泉足湯）。鮮魚店直營，館內人氣最高。
@@ -454,7 +479,8 @@ export const hakodateWest: Area = {
           category: '甜點與咖啡',
           myMap: { note: '旅遊書' },
           body: `末広町 20-3。《清秀佳人》主題的老咖啡館，店主自製麵包，招牌 Gables sandwich 和戚風蛋糕。據說不收信用卡。
-**時段不一（10:00–16:00 或 11:00–18:00）；週一休。**[hakobura](https://www.hakobura.jp/spots/169)`,
+**時段不一（10:00–16:00 或 11:00–18:00）；週一休。**[hakobura](https://www.hakobura.jp/spots/169)
+**燉牛肉線索（2026/10/23 補查）：**舊食記有ビーフシチュー配麵包、沙拉，但現在是否供應與價格待確認，先打 0138-26-7644。[舊食記](https://www.rechiba3.net/entry/hakodate_greengables/)`,
         },
         {
           name: 'ハコダテソフトハウス元町',
