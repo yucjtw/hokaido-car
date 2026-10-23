@@ -270,20 +270,6 @@ export const days: Day[] = [
           },
         ],
       },
-      {
-        title: '鹿部',
-        note: '繞路候選，多約 1–1.5 小時',
-        spots: [
-          {
-            name: '道の駅 しかべ間歇泉公園',
-            mapcode: '744 400 122*51',
-            mapcodeSource: 'https://www.mapion.co.jp/phonebook/M08003/01343/ILSP0058717779_ipclm/',
-            phone: '01372-7-5655',
-            address: '鹿部町鹿部18-1',
-            note: '間歇泉、足湯、蒸し釜；食堂 11:00–14:00',
-          },
-        ],
-      },
       toyakoOnsen,
     ],
   },
