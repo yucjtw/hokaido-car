@@ -208,7 +208,7 @@ export const campaigns: Record<string, Campaign> = {
     budget: '每週總預算 45,000 點，約 450 人拿滿',
     link: PX_CARD,
     fullNotice: PX_NOTICE,
-    noticeKeywords: '日韓跨境、國泰世華、信用卡、滿千；每週一期',
+    noticeKeywords: '「《第一波｜國泰世華銀行｜信用卡消費1000享5%全點》本週額滿公告」對應這個信用卡加碼 5%，標題沒有「日本」或「日韓跨境」；每週一期，只勾公告所屬週別，個人每波上限仍為 100 點',
   },
   px_next_account: {
     id: 'px_next_account',
