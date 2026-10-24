@@ -214,14 +214,6 @@ export const days: Day[] = [
         title: '北斗市',
         spots: [
           {
-            name: 'トラピスト修道院',
-            mapcode: '951 248 501*35',
-            mapcodeSource: 'https://www.mapion.co.jp/phonebook/M10018/01236/20130330954/',
-            phone: '0138-75-2108',
-            address: '北斗市三ツ石392',
-            note: '林蔭道、奶油霜淇淋；賣店 8:30–16:30；女性不能進修道院內',
-          },
-          {
             name: '新函館北斗駅',
             mapcode: '86 543 132*36',
             mapcodeSource: 'WNR マップコード PDF',
@@ -271,6 +263,20 @@ export const days: Day[] = [
         ],
       },
       toyakoOnsen,
+      {
+        title: '北斗市（備選）',
+        note: '男子修道院不列入預定行程；需往西繞行',
+        spots: [
+          {
+            name: 'トラピスト修道院',
+            mapcode: '951 248 501*35',
+            mapcodeSource: 'https://www.mapion.co.jp/phonebook/M10018/01236/20130330954/',
+            phone: '0138-75-2108',
+            address: '北斗市三ツ石392',
+            note: '林蔭道、奶油霜淇淋；賣店 8:30–16:30；女性不能進修道院內',
+          },
+        ],
+      },
     ],
   },
   {
