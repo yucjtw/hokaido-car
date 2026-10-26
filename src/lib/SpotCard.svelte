@@ -30,6 +30,9 @@
       {/if}
     </p>
   {/if}
+  {#if spot.addressEn}
+    <p class="english-address"><span class="address-label">英文地址</span><br /><span lang="en">{spot.addressEn}</span></p>
+  {/if}
   {#if spot.walk?.length}
     <ul class="walk">
       {#each spot.walk as place (place.name)}
@@ -98,6 +101,16 @@
     text-decoration: none;
   }
   .address {
+    color: var(--muted);
+  }
+  .english-address {
+    margin-top: 6px;
+    font-size: 1rem;
+    overflow-wrap: anywhere;
+    user-select: text;
+  }
+  .address-label {
+    font-size: 0.8125rem;
     color: var(--muted);
   }
   .walk {

@@ -300,8 +300,10 @@ export const days: Day[] = [
           {
             name: '金比羅火口群有料民間展望台',
             mapcode: null,
-            address: '洞爺湖町泉・金比羅火口群付近',
-            note: '西山火口群有料展望台／Lake Toya Panoramic View Point，暫合併一處；西山側入口、未鋪裝上坡路。mapcode 待查，先用景點清單的 Google Maps；當日營業、收費與道路狀態待確認',
+            address: '洞爺湖町泉（番地未確認）',
+            addressEn: 'Izumi, Toyako, Abuta District, Hokkaido 049-5602, Japan',
+            addressSource: 'https://us.trip.com/travel-guide/attraction/toyako/nishiyama-crater-group-paid-observatory-58374554/ （2026/10/26 查詢；未列番地）',
+            note: '西山火口群有料展望台／Lake Toya Panoramic View Point，暫合併一處；西山側入口、未鋪裝上坡路。mapcode 待查；英文地址僅到泉地區、無番地，無法精準定位展望台或開車入口；當日營業、收費與道路狀態待確認',
           },
           {
             name: '有珠山ロープウェイ',

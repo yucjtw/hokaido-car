@@ -9,6 +9,10 @@ export interface Spot {
   phone?: string
   /** Japanese address. */
   address?: string
+  /** Romanized address for navigation systems with English input. */
+  addressEn?: string
+  /** Published address source and lookup date. */
+  addressSource?: string
   /** One short line in Traditional Chinese, e.g. what this stop is for. */
   note?: string
   /** Places reached on foot after parking here, so they need no navigation entry. */
