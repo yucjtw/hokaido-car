@@ -298,6 +298,12 @@ export const days: Day[] = [
             note: '有南北兩個免費停車場；11 月初起封閉',
           },
           {
+            name: '金比羅火口群有料民間展望台',
+            mapcode: null,
+            address: '洞爺湖町泉・金比羅火口群付近',
+            note: '西山火口群有料展望台／Lake Toya Panoramic View Point，暫合併一處；西山側入口、未鋪裝上坡路。mapcode 待查，先用景點清單的 Google Maps；當日營業、收費與道路狀態待確認',
+          },
+          {
             name: '有珠山ロープウェイ',
             mapcode: '321 433 350*55',
             mapcodeSource: 'WNR マップコード PDF（Mapion 為 321 433 351*52）',

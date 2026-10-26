@@ -73,6 +73,14 @@ export const toya: Area = {
       name: '西山',
       places: [
         {
+          name: '金比羅火口群有料民間展望台',
+          category: '其它',
+          map: 'https://maps.app.goo.gl/TBXvS9RRaFEJ2QzS7',
+          body: `民間收費展望區，可看金比羅火口群、洞爺湖與温泉街。你提供的三個圖釘相距約數十公尺，暫合併為同一處展望區：另見[西山火口群有料展望台](https://maps.app.goo.gl/tx3D9AKCg7X3akEo8)與[Lake Toya Panoramic View Point](https://maps.app.goo.gl/FwBxqPsJYRGSo4gPA)。
+**開車入口在西山山麓火口散策路附近，沿未鋪裝上坡路進入。**與温泉街步行散策路的火口展望點分開。
+**2026/10/26 查詢：當日營業時間、休日、收費及道路開放狀態待現場確認。**[2025 年活動資料](https://www.old.jsfee.jp/hokkaido2025/JSEE_36th_Hokkaido_Excursion_25.08.10updated.pdf)列一車 5 人以內 JPY 1,000，僅供預算參考；[2022 年實訪](https://dora-tabi.com/konpirakakogun-yuryo-minkan/)記載普通車可開至展望區。**此處 mapcode 尚未找到可核對的公開來源。**`,
+        },
+        {
           name: '西山山麓火口散策路',
           category: '其它',
           query: '西山山麓火口散策路',
