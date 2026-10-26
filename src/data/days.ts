@@ -408,7 +408,7 @@ export const days: Day[] = [
             mapcodeSource: 'https://www.mapion.co.jp/phonebook/M08001/01103/ILSP0059217407_ipclm/',
             phone: '011-788-7732',
             address: '札幌市東区北10条東3丁目2-45',
-            note: '9:00–19:00；還車前先問指定加油站',
+            note: '16:00 先到札幌住宿點放行李，再加油；最晚 18:00 還車。先問指定加油站',
           },
         ],
       },

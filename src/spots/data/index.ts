@@ -10,6 +10,7 @@ import { sapporoSubway } from './sapporoSubway'
 import { shiraoi } from './shiraoi'
 import { tomakomai } from './tomakomai'
 import { toya } from './toya'
+import { expressway, nakayama } from './toyaSapporo'
 
 /** Tabs in trip order. */
-export const areas: Area[] = [hakodateWest, hakodateMotomachi, goryokaku, donanDrive, toya, sapporo, sapporoSubway, sapporoSuburbs, chitose, shiraoi, tomakomai]
+export const areas: Area[] = [hakodateWest, hakodateMotomachi, goryokaku, donanDrive, toya, nakayama, expressway, sapporo, sapporoSubway, sapporoSuburbs, chitose, shiraoi, tomakomai]
