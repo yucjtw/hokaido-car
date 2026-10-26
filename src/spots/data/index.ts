@@ -14,3 +14,7 @@ import { expressway, nakayama } from './toyaSapporo'
 
 /** Tabs in trip order. */
 export const areas: Area[] = [hakodateWest, hakodateMotomachi, goryokaku, donanDrive, toya, nakayama, expressway, sapporo, sapporoSubway, sapporoSuburbs, chitose, shiraoi, tomakomai]
+
+/** Keep earlier areas available by URL while hiding their tabs. */
+const hiddenAreaIds = new Set(['hakodate-west', 'hakodate-motomachi', 'goryokaku', 'donan-drive'])
+export const visibleAreas = areas.filter((area) => !hiddenAreaIds.has(area.id))

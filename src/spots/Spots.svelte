@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { areas } from './data/index'
+  import { areas, visibleAreas } from './data/index'
   import { renderBody } from './markdown'
   import PlaceCard from './PlaceCard.svelte'
   import { pickInitialArea } from './pickArea'
@@ -10,7 +10,7 @@
   const categories: Category[] = ['正餐', '甜點與咖啡', '其它']
   const viewKey = 'hokaido-spots:view'
 
-  let current = $state(pickInitialArea(areas, location.hash))
+  let current = $state(areas.find((area) => `#${area.id}` === location.hash) ?? pickInitialArea(visibleAreas, location.hash))
   let view = $state<View>(readView())
 
   // Both views list the same places; only the grouping and the small label under each name differ.
@@ -67,7 +67,7 @@
 
 <header>
   <nav aria-label="區域">
-    {#each areas as area (area.id)}
+    {#each visibleAreas as area (area.id)}
       <button
         type="button"
         class:active={area.id === current.id}
